@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.inner{
+		float:left;
+	}
+	.right{
+	 	padding-top: 20px;
+  		padding-right: 0.25em;
+	  	padding-bottom: 2ex;
+	  	padding-left: 20%;
+	
+		float:left;
+	}
+	input{
+		margin :10px;
+	}
+
+</style>
+
+	
+	<script type="text/javascript">
+	
+		window.onload = function(){
+			var btn1 = document.getElementById("btn1");
+			btn1.onclick = function(){
+				console.log(btn1);
+				var bj = document.getElementById("bj");
+				alert(bj);
+				alert(bj.innerHTML);
+				
+			}
+			
+			
+			
+			
+			
+		};
+	
+	
+	
+	
+	</script>
+	
+	
+
+
+</head>
+<body>
+	<div class="inner">
+		<p>你喜欢哪一个城市:</p>
+		<ul id="city">
+			<li id="bj">北京</li>
+			<li>上海</li>
+			<li>东京</li>
+			<li>首尔</li>
+		</ul>
+		
+		<p>你喜欢那款单机游戏:</p>
+		<ul id="game">
+			<li id="rl">红警</li>
+			<li>实况</li>
+			<li>极品飞车</li>
+			<li>魔兽</li>
+		</ul>
+		
+		<p>你手机的操作系统是？</p>
+		<ul id="phone">
+			<li >IOS</li>
+			<li id="android">Android</li>
+			<li>Windows Phone</li>
+		</ul>
+		
+		<form>
+			gender:	<input type="radio" value="Male">
+					<input type="radio" value="Female">
+			<br/>		
+			name:<input type="text"/>
+		</form>
+	
+	</div>
+	
+	
+	<div class="right">
+		<form>
+			<input type="button" value="查找#bj节点" id="btn1"><br/>
+			<input type="button" value="查找所有li节点" id="btn2"><br/>
+			<input type="button" value="查找name=gender的所有节点" id="btn3"><br/>
+			<input type="button" value="查找#city下所有li节点" id="btn4"><br/>
+			<input type="button" value="返回#city下所有子节点" id="btn5"><br/>
+			<input type="button" value="返回#phone的第一个节点" id="btn6"><br/>
+			<input type="button" value="返回#bj的父节点" id="btn7"><br/>
+			<input type="button" value="返回#android的前一个兄弟节点" id="btn8"><br/>
+			<input type="button" value="返回#username的value属性值" id="btn9"><br/>
+			<input type="button" value="设置#username的value属性值" id="btn10"><br/>
+			<input type="button" value="返回#bj的文本值" id="btn11"><br/>
+		</form>
+	
+	
+	</div>
+
+
+
+
+</body>
+</html>

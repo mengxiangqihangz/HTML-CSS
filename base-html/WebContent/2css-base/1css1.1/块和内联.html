@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<!--
+			块元素和内联元素
+			div 就是一个块元素
+				所谓的块元素 就是会独占一行
+			p、h1····
+			div元素没有任何语义，就是一个纯粹的块元素
+				并且不会为里边元素设置任何默认格式
+				主要用于页面布局
+			p元素：段落元素，有格式，段落间距比较大
+		-->
+		<div id="" style="background-color: red;width: 300px;">
+			我的第一个div标签
+		</div>
+		
+		<div id="div2" style="background-color: yellow; width: 200px;">
+			我是第二个div标签
+		</div>
+		
+		<p>我是一个p标签</p>
+		
+		<!--
+			内联元素
+			span是一个内联元素（行内元素）
+				所谓的内联元素，指的是只占自身大小的元素，不会占用一行
+			常见的内联元素
+				a、img、iframe、span
+				span元素没有任何语义，span标签专门用来选中文字，然后为文字设置样式
+		-->
+		<span>第一个span标签</span>
+		<span>第二个span标签</span>
+		<span>第二个span标签</span>
+		<span>第二个span标签</span>
+		<span>第二个span标签</span>
+		<span>第二个span标签</span>
+		<span>第二个span标签</span>
+		<span>第二个span标签</span>
+		<span>第二个span标签</span>
+		<span>第二个span标签</span>
+		
+		
+		<!--
+			总结
+				块元素主要用来做页面布局，内联元素主要用来选中文本设置样式
+				一般情况下只使用块元素去包含内联元素，而不会使用内联元素包含块元素
+				
+				a元素可以包含任意元素，但是不能包含他本身a
+				p元素不可以包含任何块元素
+		-->
+		
+		<a href="#">
+			<div id="">
+				我是一个div
+				
+			</div>
+		</a>
+		
+		<a href="#">
+			<a href="#">
+				我是内层a标签
+			</a>
+			我是外层a标签
+			
+		</a>
+		
+		<p>
+			外层p元素
+			<p>内层p元素</p>
+		</p>
+	</body>
+</html>

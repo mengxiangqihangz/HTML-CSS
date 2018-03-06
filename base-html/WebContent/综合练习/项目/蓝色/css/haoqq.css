@@ -1,0 +1,103 @@
+@charset "utf-8";
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+.topWrap{
+    border-bottom:1px solid #d9d9d9;
+    min-width: 990px;
+    height:28px;
+    background: url(../images/bg_top.png) repeat-x;
+}
+
+.topWrapcont {
+    width: 990px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 999;
+}
+.topWrap .innerWrap {
+    width: 990px;
+    height: 28px;
+    line-height: 28px;
+    *line-height: 31px;
+    line-height: 32px \0;
+    overflow: hidden;
+}
+
+.topWrap a {
+    float: left;
+    padding: 0 7px;
+    color: #404040;
+    overflow: hidden;
+    height: 28px;
+}
+
+.topWrap a:hover {
+    background-color: #68b2eb;
+    text-decoration: none;
+    color: #fff;
+    padding: 0 6px;
+    border-width: 0 1px 1px;
+    border-style: solid;
+    border-color: #5ea1e0;
+    margin-bottom: -1px;
+    position: relative;
+}
+
+.topWrap .line {
+    width: 1px;
+    background: #d9d9d9;
+    height: 17px;
+    float: left;
+    margin-top: 6px;
+}
+
+.topWrap .setIndex span, .topWrap .gold span {
+    float: left;
+}
+.topWrap .setIndex span.icon {
+    margin-top: 6px;
+}
+.topWrap .setIndex .icon, .topWrap .gold .icon {
+    background: url(../images/5icon.png) no-repeat 0 0;
+    margin-right: 5px;
+}
+.topWrap .setIndex .icon {
+    width: 17px;
+    height: 17px;
+    background-position: -68px 0;
+}
+.topWrap .setIndex:hover .icon {
+    background-position: -68px -17px;
+}
+.topWrap .user .avatar, .topWrap .user .name {
+    vertical-align: middle;
+    display: inline-block;
+}
+.topWrap .user .avatar {
+    margin-right: 5px;
+    width: 21px;
+    height: 21px;
+}
+.topWrap .qZone, .topWrap .twitter, .topWrap .mail {
+    height: 28px;
+}
+
+
+.container {
+    width: 990px;
+    margin: 0 auto;
+    background-color: #0a348a;
+}
+
+
+.footer {
+    color: #015293;
+    font-size: 12px;
+    line-height: 22px;
+    padding: 12px 0 5px;
+    text-align: center;
+    color: #494949;
+}

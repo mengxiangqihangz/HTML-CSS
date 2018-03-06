@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			/**
+			 * 元素选择器
+					语法：
+						标签名{}
+			 * id选择器
+			 * 		语法：
+			 * 			#id属性值{}
+			 * 类选择器
+			 * 		语法
+			 * 			.class属性值{}
+			 * 		可以同时为一个元素设置多个class属性值，多个属性值之间使用空格隔开
+			 */
+			/*p{
+				color: red;
+			}
+			h1{
+				color: blue;
+			}*/
+		
+			/*p{
+				font-size: 20px;
+			}
+			#p1{
+				font-size: 30px;
+			}
+			
+			.cs{
+				color: blue;
+			}
+			.hello{
+				background: yellow;
+			}*/
+			
+			/*
+			 * 为id为p1的元素，class为cs的元素，还有h1，同时设置一个背景颜色为黄色
+			 * 可以使用   
+			 * 选择器分组（并集选择器）
+			 * 	- 通过选择器分组可与同时选中多个选择器对应的元素
+			 * 	- 语法：
+			 * 		选择器1,选择器2,选择器N{}      并集
+			 * 
+			 * #通配选择器
+			 * 	- 可以选中页面中的所有元素、
+			 * 
+			 * 
+			 * 
+			 */
+			/*
+			h1,#p1,.cs{
+				background: yellow;
+			}
+			*/
+			
+			*{
+				background: blanchedalmond;
+			}
+			
+			/*
+			 为拥有class p3 span元素设置一个背景颜色为黄色
+			 复合选择器（交集选择器）
+			 	-可以选中同时满足多个条件的元素
+			 	语法：
+			 		- 选择器1选择器2选择器3{}
+			 	id选择器一般不用复合选择器
+			 * */
+			span.p3{
+				background: yellow;
+			}
+		</style>
+	</head>
+	<body>
+				
+		<h1>悯农</h1>
+		<p id="p1">锄禾日当午</p>
+		<p class="cs hello">锄禾日当午</p>
+		<p class="cs">锄禾日当午</p>
+		<p class="cs">锄禾日当午</p>
+		<p class="cs">锄禾日当午</p>
+		<p class="cs">锄禾日当午</p>
+		<p>锄禾日当午</p>
+		<p>锄禾日当午</p>
+		<p>锄禾日当午</p>
+		<p class="p3">锄禾日当午</p>
+		
+		<span class="p3">
+			汗滴禾下土		
+		</span>
+	</body>
+</html>

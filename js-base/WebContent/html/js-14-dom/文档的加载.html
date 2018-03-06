@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var btn = document.getElementById("btn");
+	console.log(btn);
+	/* 
+		浏览器加载页面的顺序是自上而下的，
+		如果将script标签写在上面，代码执行时，页面还没有加载，DOM对象也没有加载。
+	*/
+	/* btn.onclick = function(){
+		alert("你点我干嘛");
+	} */
+	
+	/* 
+		这种只是生成了一个函数，
+		点击的时候调用函数
+		上面的函数没问题，但是btn没有获取到值，btn为null
+	*/
+	function clickbtn(){
+		alert("你点我干嘛");
+	}
+	/* 
+		onload 事件会在一张页面加载完成之后才触发。
+	*/
+	window.onload = function(){
+		console.log("onload");
+		var btnn = document.getElementById("btn");
+		console.log(btnn);
+		btnn.onclick = function(){
+			alert("我终于跑到前面的script中了");
+		};
+	
+		//innerHTML 通过这个属性可以获取到元素内部的html代码
+		
+		var btn2 = document.getElementById("btn2");
+		btn2.onclick = function(){
+			alert(btn2.innerHTML);
+		}
+		
+		//对于自结束标签，innerHTML 无效
+		// 只能使用
+		//	元素.属性名 id name type value className 
+		//		注意class需要使用className
+		
+		var radios = document.getElementsByName("gender");
+		
+		for (var i = 0; i < radios.length; i++) {
+			console.log(radios[i].name + "," +radios[i].type + "," + radios[i].value + ",|||" + radios[i].id + "," + radios[i].className);
+		}
+		
+		
+	};
+	
+	
+	
+</script>
+
+</head>
+<body>
+	
+	
+	<button id="btn" >点我一下</button>
+	<button id = "btn2" onclick="clickbtn()">点我一下下</button>
+	
+	
+	<br><br>
+	<input type="radio" name="gender" value="male" />Male
+	<input type="radio" name="gender" value="female" />Female
+	
+	
+	
+</body>
+</html>

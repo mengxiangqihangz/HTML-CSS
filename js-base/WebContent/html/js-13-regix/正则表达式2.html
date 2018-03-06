@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	
+	var reg = /./;   /* . 表示匹配任意字符 */
+	console.log(reg.test("abcdefg"));
+	reg = /\./;
+	console.log(reg.test("abcdefg"));
+	console.log(reg.test("ab.defg"));
+	reg = /\\/;		/* 正则要使用两个\\,表示转义 */
+	console.log(reg.test("ab\\defg"));		/* 字符串中也要使用两个\\,表示转义 */
+	/* 
+	
+	\w		-- 任意字母、数字、下划线
+	\W		-- 除了字母、数字、下划线
+	\d		-- 任意数字
+	\D		-- 除了数字
+	\s		-- 空格
+	\S		-- 除了空格
+	\b		-- 单词边界
+	
+	*/
+	console.log("\\w");
+	reg = /\W/;
+	console.log(reg.test("a12"));
+	
+	reg = /\bchild\b/;
+	console.log(reg.test("hello children"));
+	
+	
+	// 接收一个用户的输入
+	/* var str = prompt("请输入你的用户名：");
+	 */
+	var str = "     hello admin        ";
+	console.log(str);
+	//str = str.replace(/\s/g,"")  //前后中间的空格全没了
+	//str = str.replace(/^\s*/, "")  //只能去开头的
+	//str = str.replace(/\s*$/, "")	//去除结尾的空格
+	str = str.replace(/^\s*|\s*$/g, ""); 
+	
+	console.log(str);
+	
+	
+	console.log("邮件的正则表达式");
+	/* 
+		hello   .nihao  @  abc   .com.cn
+		任意字母数字下划线   .任意字母数字下划线  @ 任意字母数字   .任意字母（2-5为）  .任意字母（2-5位）
+	*/
+	reg = /^\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+	console.log(reg.test("a11c.hello@16a.com.cn"));
+	
+	
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

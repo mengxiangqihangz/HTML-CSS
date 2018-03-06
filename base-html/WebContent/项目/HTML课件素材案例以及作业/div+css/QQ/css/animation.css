@@ -1,0 +1,178 @@
+/*图标动画效果*/
+.animationPic0{
+    animation: changePic 1s linear 1 both;
+}
+@keyframes changePic {
+    0%{
+        background-position:0 -114px ;
+    }
+    25%{
+        transform: rotate(30deg);
+        background-position:0 -114px ;
+    }
+    50%{
+        transform: rotate(-25deg);
+        background-position:0 -114px ;
+    }
+    75%{
+        transform: rotate(10deg);
+        background-position:0 -114px ;
+    }
+    85%{
+        transform: rotate(-8deg);
+        background-position:0 -114px ;
+    }
+    100%{
+        transform: rotate(0deg);
+        background-position:0 -114px ;
+    }
+}
+
+.animationPic1{
+    animation: changePic1 1s linear 1 both;
+}
+@keyframes changePic1 {
+    0%{
+        background-position:-14px -114px ;
+    }
+    25%{
+        transform: rotate(30deg);
+        background-position:-14px -114px ;
+    }
+    50%{
+        transform: rotate(-25deg);
+        background-position:-14px -114px ;
+    }
+    75%{
+        transform: rotate(10deg);
+        background-position:-14px -114px ;
+    }
+    85%{
+        transform: rotate(-8deg);
+        background-position:-14px -114px ;
+    }
+    100%{
+        transform: rotate(0deg);
+        background-position:-14px -114px ;
+    }
+}
+
+
+.animationPic2{
+    animation: changePic2 1s linear 1 both;
+}
+@keyframes changePic2 {
+    0%{
+        background-position:-30px -114px ;
+    }
+    25%{
+        transform: rotate(30deg);
+        background-position:-30px -114px ;
+    }
+    50%{
+        transform: rotate(-25deg);
+        background-position:-30px -114px ;
+    }
+    75%{
+        transform: rotate(10deg);
+        background-position:-30px -114px ;
+    }
+    85%{
+        transform: rotate(-8deg);
+        background-position:-30px -114px ;
+    }
+    100%{
+        transform: rotate(0deg);
+        background-position:-30px -114px ;
+    }
+}
+
+.animationPic3{
+    animation: changePic3 1s linear 1 both;
+}
+@keyframes changePic3 {
+    0%{
+        background-position:-45px -114px ;
+    }
+    25%{
+        transform: rotate(30deg);
+        background-position:-45px -114px ;
+    }
+    50%{
+        transform: rotate(-25deg);
+        background-position:-45px -114px ;
+    }
+    75%{
+        transform: rotate(10deg);
+        background-position:-45px -114px ;
+    }
+    85%{
+        transform: rotate(-8deg);
+        background-position:-45px -114px ;
+    }
+    100%{
+        transform: rotate(0deg);
+        background-position:-45px -114px ;
+    }
+}
+
+.animationPic4{
+     animation: changePic4 1s linear 1 both;
+ }
+@keyframes changePic4 {
+    0%{
+        background-position:-60px -114px ;
+    }
+    25%{
+        transform: rotate(30deg);
+        background-position:-60px -114px ;
+    }
+    50%{
+        transform: rotate(-25deg);
+        background-position:-60px -114px ;
+    }
+    75%{
+        transform: rotate(10deg);
+        background-position:-60px -114px ;
+    }
+    85%{
+        transform: rotate(-8deg);
+        background-position:-60px -114px ;
+    }
+    100%{
+        transform: rotate(0deg);
+        background-position:-60px -114px ;
+    }
+}
+.animationPic5{
+    animation: changePic5 1s linear 1 both;
+}
+@keyframes changePic5 {
+    0%{
+        background-position:-75px -114px ;
+
+    }
+    25%{
+        background-position:-75px -114px ;
+        transform: rotate(30deg);
+    }
+    50%{
+        background-position:-75px -114px ;
+        transform: rotate(-25deg);
+    }
+    75%{
+        background-position:-75px -114px ;
+        transform: rotate(10deg);
+    }
+    85%{
+        background-position:-75px -114px ;
+        transform: rotate(-8deg);
+    }
+    100%{
+        background-position:-75px -114px ;
+        transform: rotate(0deg);
+    }
+}
+.animationText{
+    transform: scale(1.2);
+}

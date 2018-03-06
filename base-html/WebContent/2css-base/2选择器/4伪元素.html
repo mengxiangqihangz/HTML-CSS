@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			/*
+			 * 使用伪元素来表示元素中的一些特殊位置
+			 */
+			/**
+			 * 第一个字
+			 */
+			p:first-letter{
+				color: red;
+				font-size: 30px;
+			}
+			/**
+			 * 第一行
+			 */
+			p:first-line{
+				background: yellow;
+			}
+			/*
+			 * :before表示元素最前边的部分
+			 * 一般befor都需要结合content这个样式一起使用
+			 * 通过content可以向befor或after的位置添加一些内容
+			 */
+			p:before{
+				content: "我会出现再整个段落的最前边，";
+				/*content中的内容在浏览器中无法选中*/
+				color:blue
+			}
+			p:after{
+				content: "我会出现再整个段落的最后边，";
+				/*content中的内容在浏览器中无法选中*/
+				color:blue
+			}
+			
+		</style>
+		
+		
+	</head>
+	<body>
+		
+		<p>
+			我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落
+		我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落
+		我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落我是一个段落
+		</p>
+	</body>
+</html>

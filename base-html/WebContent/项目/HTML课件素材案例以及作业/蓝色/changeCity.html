@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<style rel="stylesheet" type="text/css">
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+fieldset, img {
+	border:0;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol, ul {
+	list-style:none;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before, q:after {
+	content:'';
+}
+sup {
+	vertical-align:text-parent.
+}
+sub {
+	vertical-align:text-bottom;
+}
+body, table {
+	font-size:12px;
+	color:#000;
+	font-family:Arial, Helvetica, sans-serif, SimSun;
+	background:#fff;
+}
+td {
+	font-size:12px;
+	color:#000;
+	font-family:Arial, Helvetica, sans-serif, SimSun;
+}
+select, input, button, textarea {
+	font-family:Arial, Helvetica, sans-serif, SimSun;
+	font-size:12px;
+	vertical-align:middle;
+}
+h1, h2, h3, h4, h5, h6, strong {
+	font-weight:bold;
+}
+a:link {
+	color:#03c;
+}
+.k {
+	clear:both;
+	font-size:0;
+	height:0;
+	line-height:0;
+}
+.wf_hd a, .wf_hd a:hover {
+	background:url('http://cache.soso.com/30d/img/web/iframe_bg.png') no-repeat;
+}
+#wf_cont {
+	width:548px;
+	height:398px;
+	border:1px solid #87c2e0;
+	background:#fff;
+}
+#wf_head {
+	background:url('http://cache.soso.com/30d/img/web/iframe_bg.png') repeat-x 0 0;
+	height:31px;
+}
+.wf_hd {
+	width:524px;
+	margin:0 auto;
+	border-bottom:1px solid #d3eefe;
+	height:31px;
+	line-height:31px;
+	padding:0 5px;
+}
+.wf_hd h3 {
+	float:left;
+	font-size:14px;
+	color:#1a4c8c;
+	width:400px;
+	margin:0;
+}
+.wf_hd a {
+	background-position:-17px -36px;
+	float:right;
+	width:17px;
+	height:23px;
+	text-decoration:none;
+}
+.wf_hd a:hover {
+	background-position:0 -36px;
+}
+#wf_main {
+	width:514px;
+	margin:10px auto;
+}
+.wf_qf {
+	font-size:14px;
+	font-weight:bold;
+}
+.wf_qf a {
+	padding:0 4px;
+	color:#EB6100;
+}
+.wf_qf a:hover {
+	color:#fff;
+	background-color:#5ba7e9;
+	text-decoration:none;
+	padding:0 4px;
+}
+.wf_list {
+	height:318px;
+	overflow:hidden;
+	overflow-y:scroll;
+	margin:10px 0 0 0;
+}
+.wf_list li {
+	overflow:hidden;
+}
+.wf_list h4 {
+	float:left;
+	padding:6px 0;
+	width:30px;
+	font-weight:bold;
+	color:#eb6100;
+	font-size:14px;
+}
+.wf_r {
+	float:left;
+}
+.wf_r p {
+	background:#EDF7FF;
+	padding:6px 5px;
+	width:450px;
+	line-height:160%;
+	border:#fff 1px solid;
+}
+.wf_r p.wf_border {
+	border:#b8dbff 1px solid;
+}
+.wf_r p.wf_bkno {
+	background:#fff;
+}
+.wf_r span {
+	display:inline-block;
+	width:390px;
+}
+.wf_r span.wf_first {
+	width:55px;
+	font-weight:bold;
+	font-size:14px;
+	vertical-align:parent.
+}
+.wf_r a {
+	display:inline-block;
+	color:#03c;
+	margin:0 9px 0 0;
+	padding:0 1px;
+}
+.wf_r a:hover {
+	background:#5ba7e9;
+	color:#fff;
+	text-decoration:none;
+}
+</style>
+<title>地区选择</title>
+</head>
+<body>
+<div id="wf_cont">
+  <div id="wf_head">
+    <div class="wf_hd">
+      <h3>点击更改城市</h3>
+      <a href="javascript:void()" id="closer" title="关闭">&nbsp;</a></div>
+    <script>
+function request(paras) { 
+	var url = location.href; 
+	var paraString = url.substring(url.indexOf("?")+1,url.length).split("&"); 
+	var paraObj = {} 
+	for (i=0; j = paraString[i]; i++) {
+		paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length); 
+	}
+	var returnValue = paraObj[paras.toLowerCase()]; 
+	if(typeof(returnValue) == "undefined") {
+		return ""; 
+	}
+	else {
+		return returnValue; 
+	}
+}
+        	</script>
+  </div>
+  <div id="wf_main">
+    <div class="wf_qf" id="anchorcontainer">按省/直辖市/地区查找：<a name="A">A</a><a name="B">B</a><a name="C">C</a><a name="F">F</a><a name="G">G</a><a name="H">H</a><a name="J">J</a><a name="L">L</a><a name="N">N</a><a name="Q">Q</a><a name="S">S</a><a name="T">T</a><a name="X">X</a><a name="Y">Y</a><a name="Z">Z</a></div>
+    <ul class="wf_list" id="wf_list">
+      <li><a name="A" id="anchorA"></a>
+        <h4>A</h4>
+        <div class="wf_r">
+          <p><span class="wf_first">安徽</span><span><a href="javascript:void(0);" class="city">合肥</a><a href="javascript:void(0);" class="city">安庆</a><a href="javascript:void(0);" class="city">蚌埠</a><a href="javascript:void(0);" class="city">亳州</a><a href="javascript:void(0);" class="city">巢湖</a><a href="javascript:void(0);" class="city">池州</a><a href="javascript:void(0);" class="city">滁州</a><a href="javascript:void(0);" class="city">阜阳</a><a href="javascript:void(0);" class="city">淮北</a><a href="javascript:void(0);" class="city">淮南</a><a href="javascript:void(0);" class="city">黄山</a><a href="javascript:void(0);" class="city">六安</a><a href="javascript:void(0);" class="city">马鞍山</a><a href="javascript:void(0);" class="city">宿州</a><a href="javascript:void(0);" class="city">铜陵</a><a href="javascript:void(0);" class="city">芜湖</a><a href="javascript:void(0);" class="city">宣城</a></span></p>
+          <p class="wf_bkno"><span class="wf_first">澳门</span><span><a href="javascript:void(0);" class="city">澳门</a></span></p>
+        </div>
+      </li>
+      <li><a name="B" id="anchorB"></a>
+        <h4>B</h4>
+        <div class="wf_r">
+          <p><span class="wf_first">北京</span><span><a href="javascript:void(0);" class="city">北京</a></span></p>
+        </div>
+      </li>
+      <li><a name="C" id="anchorC"></a>
+        <h4>C</h4>
+        <div class="wf_r">
+          <p class="wf_bkno"><span class="wf_first">重庆</span><span><a href="javascript:void(0);" class="city">重庆</a><a href="javascript:void(0);" class="city">奉节</a><a href="javascript:void(0);" class="city">涪陵</a></span></p>
+        </div>
+      </li>
+      <li><a name="F"  id="anchorF"></a>
+        <h4>F</h4>
+        <div class="wf_r">
+          <p><span class="wf_first">福建</span><span><a href="javascript:void(0);" class="city">福州</a><a href="javascript:void(0);" class="city">厦门</a><a href="javascript:void(0);" class="city">龙岩</a><a href="javascript:void(0);" class="city">南平</a><a href="javascript:void(0);" class="city">宁德</a><a href="javascript:void(0);" class="city">莆田</a><a href="javascript:void(0);" class="city">浦城</a><a href="javascript:void(0);" class="city">泉州</a><a href="javascript:void(0);" class="city">三明</a><a href="javascript:void(0);" class="city">漳州</a></span></p>
+        </div>
+      </li>
+      <li><a name="G" id="anchorG"></a>
+        <h4>G</h4>
+        <div class="wf_r">
+          <p class="wf_bkno"><span class="wf_first">甘肃</span><span><a href="javascript:void(0);" class="city">兰州</a><a href="javascript:void(0);" class="city">白银</a><a href="javascript:void(0);" class="city">定西</a><a href="javascript:void(0);" class="city">甘南</a><a href="javascript:void(0);" class="city">嘉峪关</a><a href="javascript:void(0);" class="city">金昌</a><a href="javascript:void(0);" class="city">酒泉</a><a href="javascript:void(0);" class="city">临夏</a><a href="javascript:void(0);" class="city">平凉</a><a href="javascript:void(0);" class="city">庆阳</a><a href="javascript:void(0);" class="city">天水</a><a href="javascript:void(0);" class="city">武威</a><a href="javascript:void(0);" class="city">张掖</a></span></p>
+          <p><span class="wf_first">广东</span><span><a href="javascript:void(0);" class="city">广州</a><a href="javascript:void(0);" class="city">深圳</a><a href="javascript:void(0);" class="city">潮州</a><a href="javascript:void(0);" class="city">电白</a><a href="javascript:void(0);" class="city">东莞</a><a href="javascript:void(0);" class="city">佛冈</a><a href="javascript:void(0);" class="city">佛山</a><a href="javascript:void(0);" class="city">高要</a><a href="javascript:void(0);" class="city">河源</a><a href="javascript:void(0);" class="city">惠州</a><a href="javascript:void(0);" class="city">江门</a><a href="javascript:void(0);" class="city">揭阳</a><a href="javascript:void(0);" class="city">茂名</a><a href="javascript:void(0);" class="city">梅县</a><a href="javascript:void(0);" class="city">梅州</a><a href="javascript:void(0);" class="city">南雄</a><a href="javascript:void(0);" class="city">清远</a><a href="javascript:void(0);" class="city">汕头</a><a href="javascript:void(0);" class="city">汕尾</a><a href="javascript:void(0);" class="city">韶关</a><a href="javascript:void(0);" class="city">阳江</a><a href="javascript:void(0);" class="city">云浮</a><a href="javascript:void(0);" class="city">湛江</a><a href="javascript:void(0);" class="city">肇庆</a><a href="javascript:void(0);" class="city">中山</a><a href="javascript:void(0);" class="city">珠海</a></span></p>
+          <p class="wf_bkno"><span class="wf_first">广西</span><span><a href="javascript:void(0);" class="city">桂林</a><a href="javascript:void(0);" class="city">百色</a><a href="javascript:void(0);" class="city">北海</a><a href="javascript:void(0);" class="city">崇左</a><a href="javascript:void(0);" class="city">防城港</a><a href="javascript:void(0);" class="city">贵港</a><a href="javascript:void(0);" class="city">河池</a><a href="javascript:void(0);" class="city">贺州</a><a href="javascript:void(0);" class="city">来宾</a><a href="javascript:void(0);" class="city">柳州</a><a href="javascript:void(0);" class="city">南宁</a><a href="javascript:void(0);" class="city">钦州</a><a href="javascript:void(0);" class="city">梧州</a><a href="javascript:void(0);" class="city">玉林</a></span></p>
+          <p><span class="wf_first">贵州</span><span><a href="javascript:void(0);" class="city">贵阳</a><a href="javascript:void(0);" class="city">安顺</a><a href="javascript:void(0);" class="city">毕节</a><a href="javascript:void(0);" class="city">六盘水</a><a href="javascript:void(0);" class="city">铜仁</a><a href="javascript:void(0);" class="city">遵义</a></span></p>
+        </div>
+      </li>
+      <li><a name="H" id="anchorH"></a>
+        <h4>H</h4>
+        <div class="wf_r">
+          <p class="wf_bkno"><span class="wf_first">海南</span><span><a href="javascript:void(0);" class="city">海口</a><a href="javascript:void(0);" class="city">三亚</a><a href="javascript:void(0);" class="city">澄迈</a><a href="javascript:void(0);" class="city">定安</a><a href="javascript:void(0);" class="city">东方</a><a href="javascript:void(0);" class="city">临高</a><a href="javascript:void(0);" class="city">琼海</a><a href="javascript:void(0);" class="city">屯昌</a><a href="javascript:void(0);" class="city">万宁</a><a href="javascript:void(0);" class="city">文昌</a><a href="javascript:void(0);" class="city">儋州</a></span></p>
+          <p><span class="wf_first">河北</span><span><a href="javascript:void(0);" class="city">石家庄</a><a href="javascript:void(0);" class="city">承德</a><a href="javascript:void(0);" class="city">保定</a><a href="javascript:void(0);" class="city">沧州</a><a href="javascript:void(0);" class="city">邯郸</a><a href="javascript:void(0);" class="city">衡水</a><a href="javascript:void(0);" class="city">廊坊</a><a href="javascript:void(0);" class="city">秦皇岛</a><a href="javascript:void(0);" class="city">唐山</a><a href="javascript:void(0);" class="city">邢台</a><a href="javascript:void(0);" class="city">张家口</a></span></p>
+          <p class="wf_bkno"><span class="wf_first">河南</span><span><a href="javascript:void(0);" class="city">郑州</a><a href="javascript:void(0);" class="city">安阳</a><a href="javascript:void(0);" class="city">鹤壁</a><a href="javascript:void(0);" class="city">济源</a><a href="javascript:void(0);" class="city">焦作</a><a href="javascript:void(0);" class="city">开封</a><a href="javascript:void(0);" class="city">洛阳</a><a href="javascript:void(0);" class="city">南阳</a><a href="javascript:void(0);" class="city">平顶山</a><a href="javascript:void(0);" class="city">三门峡</a><a href="javascript:void(0);" class="city">商丘</a><a href="javascript:void(0);" class="city">新乡</a><a href="javascript:void(0);" class="city">信阳</a><a href="javascript:void(0);" class="city">许昌</a><a href="javascript:void(0);" class="city">周口</a><a href="javascript:void(0);" class="city">驻马店</a><a href="javascript:void(0);" class="city">漯河</a><a href="javascript:void(0);" class="city">濮阳</a></span></p>
+          <p><span class="wf_first">黑龙江</span><span><a href="javascript:void(0);" class="city">哈尔滨</a><a href="javascript:void(0);" class="city">大庆</a><a href="javascript:void(0);" class="city">大兴安岭</a><a href="javascript:void(0);" class="city">鹤岗</a><a href="javascript:void(0);" class="city">黑河</a><a href="javascript:void(0);" class="city">鸡西</a><a href="javascript:void(0);" class="city">佳木斯</a><a href="javascript:void(0);" class="city">漠河</a><a href="javascript:void(0);" class="city">牡丹江</a><a href="javascript:void(0);" class="city">七台河</a><a href="javascript:void(0);" class="city">齐齐哈尔</a><a href="javascript:void(0);" class="city">双鸭山</a><a href="javascript:void(0);" class="city">绥芬河</a><a href="javascript:void(0);" class="city">绥化</a><a href="javascript:void(0);" class="city">伊春</a></span></p>
+          <p class="wf_bkno"><span class="wf_first">湖北</span><span><a href="javascript:void(0);" class="city">武汉</a><a href="javascript:void(0);" class="city">鄂州</a><a href="javascript:void(0);" class="city">黄冈</a><a href="javascript:void(0);" class="city">黄石</a><a href="javascript:void(0);" class="city">荆门</a><a href="javascript:void(0);" class="city">麻城</a><a href="javascript:void(0);" class="city">潜江</a><a href="javascript:void(0);" class="city">神农架</a><a href="javascript:void(0);" class="city">随州</a><a href="javascript:void(0);" class="city">天门</a><a href="javascript:void(0);" class="city">仙桃</a><a href="javascript:void(0);" class="city">咸宁</a><a href="javascript:void(0);" class="city">孝感</a><a href="javascript:void(0);" class="city">枣阳</a></span></p>
+          <p><span class="wf_first">湖南</span><span><a href="javascript:void(0);" class="city">长沙</a><a href="javascript:void(0);" class="city">张家界</a><a href="javascript:void(0);" class="city">常德</a><a href="javascript:void(0);" class="city">郴州</a><a href="javascript:void(0);" class="city">衡阳</a><a href="javascript:void(0);" class="city">怀化</a><a href="javascript:void(0);" class="city">娄底</a><a href="javascript:void(0);" class="city">南岳</a><a href="javascript:void(0);" class="city">桑植</a><a href="javascript:void(0);" class="city">邵阳</a><a href="javascript:void(0);" class="city">湘潭</a><a href="javascript:void(0);" class="city">益阳</a><a href="javascript:void(0);" class="city">岳阳</a><a href="javascript:void(0);" class="city">株洲</a><a href="javascript:void(0);" class="city">沅陵</a></span></p>
+        </div>
+      </li>
+      <li><a name="J" id="anchorJ"></a>
+        <h4>J</h4>
+        <div class="wf_r">
+          <p class="wf_bkno"><span class="wf_first">吉林</span><span><a href="javascript:void(0);" class="city">长春</a><a href="javascript:void(0);" class="city">白城</a><a href="javascript:void(0);" class="city">白山</a><a href="javascript:void(0);" class="city">集安</a><a href="javascript:void(0);" class="city">辽源</a><a href="javascript:void(0);" class="city">四平</a><a href="javascript:void(0);" class="city">松原</a><a href="javascript:void(0);" class="city">通化</a><a href="javascript:void(0);" class="city">桦甸</a></span></p>
+          <p><span class="wf_first">江苏</span><span><a href="javascript:void(0);" class="city">南京</a><a href="javascript:void(0);" class="city">苏州</a><a href="javascript:void(0);" class="city">扬州</a><a href="javascript:void(0);" class="city">常州</a><a href="javascript:void(0);" class="city">东台</a><a href="javascript:void(0);" class="city">赣榆</a><a href="javascript:void(0);" class="city">高邮</a><a href="javascript:void(0);" class="city">淮安</a><a href="javascript:void(0);" class="city">连云港</a><a href="javascript:void(0);" class="city">南通</a><a href="javascript:void(0);" class="city">宿迁</a><a href="javascript:void(0);" class="city">泰州</a><a href="javascript:void(0);" class="city">无锡</a><a href="javascript:void(0);" class="city">徐州</a><a href="javascript:void(0);" class="city">盐城</a><a href="javascript:void(0);" class="city">镇江</a><a href="javascript:void(0);" class="city">盱眙</a></span></p>
+          <p class="wf_bkno"><span class="wf_first">江西</span><span><a href="javascript:void(0);" class="city">南昌</a><a href="javascript:void(0);" class="city">庐山</a><a href="javascript:void(0);" class="city">抚州</a><a href="javascript:void(0);" class="city">赣州</a><a href="javascript:void(0);" class="city">广昌</a><a href="javascript:void(0);" class="city">贵溪</a><a href="javascript:void(0);" class="city">景德镇</a><a href="javascript:void(0);" class="city">九江</a><a href="javascript:void(0);" class="city">萍乡</a><a href="javascript:void(0);" class="city">上饶</a><a href="javascript:void(0);" class="city">新余</a><a href="javascript:void(0);" class="city">宜春</a><a href="javascript:void(0);" class="city">鹰潭</a><a href="javascript:void(0);" class="city">玉山</a></span></p>
+        </div>
+      </li>
+      <li><a name="L" id="anchorL"></a>
+        <h4>L</h4>
+        <div class="wf_r">
+          <p><span class="wf_first">辽宁</span><span><a href="javascript:void(0);" class="city">沈阳</a><a href="javascript:void(0);" class="city">大连</a><a href="javascript:void(0);" class="city">鞍山</a><a href="javascript:void(0);" class="city">本溪</a><a href="javascript:void(0);" class="city">朝阳</a><a href="javascript:void(0);" class="city">丹东</a><a href="javascript:void(0);" class="city">抚顺</a><a href="javascript:void(0);" class="city">阜新</a><a href="javascript:void(0);" class="city">葫芦岛</a><a href="javascript:void(0);" class="city">锦州</a><a href="javascript:void(0);" class="city">辽阳</a><a href="javascript:void(0);" class="city">盘锦</a><a href="javascript:void(0);" class="city">铁岭</a><a href="javascript:void(0);" class="city">瓦房店</a><a href="javascript:void(0);" class="city">营口</a></span></p>
+        </div>
+      </li>
+      <li><a name="N" id="anchorN"></a>
+        <h4>N</h4>
+        <div class="wf_r">
+          <p class="wf_bkno"><span class="wf_first">内蒙古</span><span><a href="javascript:void(0);" class="city">呼和浩特</a><a href="javascript:void(0);" class="city">包头</a><a href="javascript:void(0);" class="city">赤峰</a><a href="javascript:void(0);" class="city">鄂尔多斯</a><a href="javascript:void(0);" class="city">呼伦贝尔</a><a href="javascript:void(0);" class="city">通辽</a><a href="javascript:void(0);" class="city">乌海</a><a href="javascript:void(0);" class="city">锡林郭勒盟</a><a href="javascript:void(0);" class="city">锡林浩特</a></span></p>
+          <p><span class="wf_first">宁夏</span><span><a href="javascript:void(0);" class="city">银川</a><a href="javascript:void(0);" class="city">固原</a><a href="javascript:void(0);" class="city">石嘴山</a><a href="javascript:void(0);" class="city">吴忠</a></span></p>
+        </div>
+      </li>
+      <li><a name="Q" id="anchorQ"></a>
+        <h4>Q</h4>
+        <div class="wf_r">
+          <p class="wf_bkno"><span class="wf_first">青海</span><span><a href="javascript:void(0);" class="city">西宁</a><a href="javascript:void(0);" class="city">海东</a></span></p>
+        </div>
+      </li>
+      <li><a name="S" id="anchorS"></a>
+        <h4>S</h4>
+        <div class="wf_r">
+          <p><span class="wf_first">山东</span><span><a href="javascript:void(0);" class="city">济南</a><a href="javascript:void(0);" class="city">青岛</a><a href="javascript:void(0);" class="city">滨州</a><a href="javascript:void(0);" class="city">德州</a><a href="javascript:void(0);" class="city">东营</a><a href="javascript:void(0);" class="city">菏泽</a><a href="javascript:void(0);" class="city">济宁</a><a href="javascript:void(0);" class="city">莱芜</a><a href="javascript:void(0);" class="city">聊城</a><a href="javascript:void(0);" class="city">临沂</a><a href="javascript:void(0);" class="city">日照</a><a href="javascript:void(0);" class="city">泰安</a><a href="javascript:void(0);" class="city">泰山</a><a href="javascript:void(0);" class="city">威海</a><a href="javascript:void(0);" class="city">潍坊</a><a href="javascript:void(0);" class="city">烟台</a><a href="javascript:void(0);" class="city">枣庄</a><a href="javascript:void(0);" class="city">淄博</a></span></p>
+          <p class="wf_bkno"><span class="wf_first">山西</span><span><a href="javascript:void(0);" class="city">太原</a><a href="javascript:void(0);" class="city">大同</a><a href="javascript:void(0);" class="city">长治</a><a href="javascript:void(0);" class="city">晋城</a><a href="javascript:void(0);" class="city">晋中</a><a href="javascript:void(0);" class="city">临汾</a><a href="javascript:void(0);" class="city">吕梁</a><a href="javascript:void(0);" class="city">朔州</a><a href="javascript:void(0);" class="city">五台山</a><a href="javascript:void(0);" class="city">忻州</a><a href="javascript:void(0);" class="city">阳泉</a><a href="javascript:void(0);" class="city">运城</a></span></p>
+          <p><span class="wf_first">陕西</span><span><a href="javascript:void(0);" class="city">西安</a><a href="javascript:void(0);" class="city">咸阳</a><a href="javascript:void(0);" class="city">安康</a><a href="javascript:void(0);" class="city">宝鸡</a><a href="javascript:void(0);" class="city">汉中</a><a href="javascript:void(0);" class="city">商洛</a><a href="javascript:void(0);" class="city">铜川</a><a href="javascript:void(0);" class="city">渭南</a><a href="javascript:void(0);" class="city">延安</a><a href="javascript:void(0);" class="city">榆林</a></span></p>
+          <p class="wf_bkno"><span class="wf_first">上海</span><span><a href="javascript:void(0);" class="city">上海</a></span></p>
+          <p><span class="wf_first">四川</span><span><a href="javascript:void(0);" class="city">成都</a><a href="javascript:void(0);" class="city">巴中</a><a href="javascript:void(0);" class="city">达州</a><a href="javascript:void(0);" class="city">德阳</a><a href="javascript:void(0);" class="city">峨眉山</a><a href="javascript:void(0);" class="city">广安</a><a href="javascript:void(0);" class="city">广元</a><a href="javascript:void(0);" class="city">乐山</a><a href="javascript:void(0);" class="city">眉山</a><a href="javascript:void(0);" class="city">绵阳</a><a href="javascript:void(0);" class="city">南充</a><a href="javascript:void(0);" class="city">内江</a><a href="javascript:void(0);" class="city">攀枝花</a><a href="javascript:void(0);" class="city">遂宁</a><a href="javascript:void(0);" class="city">雅安</a><a href="javascript:void(0);" class="city">宜宾</a><a href="javascript:void(0);" class="city">资阳</a><a href="javascript:void(0);" class="city">自贡</a><a href="javascript:void(0);" class="city">泸州</a></span></p>
+        </div>
+      </li>
+      <li><a name="T" id="anchorT"></a>
+        <h4>T</h4>
+        <div class="wf_r">
+          <p class="wf_bkno"><span class="wf_first">台湾</span><span><a href="javascript:void(0);" class="city">台北</a></span></p>
+          <p><span class="wf_first">天津</span><span><a href="javascript:void(0);" class="city">天津</a></span></p>
+        </div>
+      </li>
+      <li><a name="X" id="anchorX"></a>
+        <h4>X</h4>
+        <div class="wf_r">
+          <p class="wf_bkno"><span class="wf_first">西藏</span><span><a href="javascript:void(0);" class="city">拉萨</a><a href="javascript:void(0);" class="city">阿里</a><a href="javascript:void(0);" class="city">昌都</a><a href="javascript:void(0);" class="city">林芝</a><a href="javascript:void(0);" class="city">那曲</a><a href="javascript:void(0);" class="city">日喀则</a><a href="javascript:void(0);" class="city">山南</a></span></p>
+          <p><span class="wf_first">香港</span><span><a href="javascript:void(0);" class="city">香港</a></span></p>
+          <p class="wf_bkno"><span class="wf_first">新疆</span><span><a href="javascript:void(0);" class="city">乌鲁木齐</a><a href="javascript:void(0);" class="city">吐鲁番</a><a href="javascript:void(0);" class="city">阿克苏</a><a href="javascript:void(0);" class="city">阿拉尔</a><a href="javascript:void(0);" class="city">哈密</a><a href="javascript:void(0);" class="city">和田</a><a href="javascript:void(0);" class="city">喀什</a><a href="javascript:void(0);" class="city">克拉玛依</a><a href="javascript:void(0);" class="city">奇台</a><a href="javascript:void(0);" class="city">石河子</a></span></p>
+        </div>
+      </li>
+      <li><a name="Y" id="anchorY"></a>
+        <h4>Y</h4>
+        <div class="wf_r">
+          <p><span class="wf_first">云南</span><span><a href="javascript:void(0);" class="city">昆明</a><a href="javascript:void(0);" class="city">丽江</a><a href="javascript:void(0);" class="city">保山</a><a href="javascript:void(0);" class="city">临沧</a><a href="javascript:void(0);" class="city">曲靖</a><a href="javascript:void(0);" class="city">瑞丽</a><a href="javascript:void(0);" class="city">思茅</a><a href="javascript:void(0);" class="city">玉溪</a><a href="javascript:void(0);" class="city">昭通</a></span></p>
+        </div>
+      </li>
+      <li><a name="Z" id="anchorZ"></a>
+        <h4>Z</h4>
+        <div class="wf_r">
+          <p class="wf_bkno"><span class="wf_first">浙江</span><span><a href="javascript:void(0);" class="city">杭州</a><a href="javascript:void(0);" class="city">绍兴</a><a href="javascript:void(0);" class="city">宁波</a><a href="javascript:void(0);" class="city">洞头</a><a href="javascript:void(0);" class="city">湖州</a><a href="javascript:void(0);" class="city">嘉兴</a><a href="javascript:void(0);" class="city">金华</a><a href="javascript:void(0);" class="city">丽水</a><a href="javascript:void(0);" class="city">宁海</a><a href="javascript:void(0);" class="city">平湖</a><a href="javascript:void(0);" class="city">台州</a><a href="javascript:void(0);" class="city">温州</a><a href="javascript:void(0);" class="city">舟山</a><a href="javascript:void(0);" class="city">嵊州</a><a href="javascript:void(0);" class="city">衢州</a></span></p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script language="javascript">
+ 
+ $ = function(p){ return document.getElementById(p);}
+ 
+function wInit(){
+	document.domain = window.location.host.substring(window.location.host.indexOf(".")+1);
+	var links = document.getElementsByTagName("a");
+
+	for(i=0;i<links.length;++i){
+		if(links[i].className=="city")
+		addEvent(links[i],'click',changeCity);
+	}
+	
+	var wrap  = $('wf_list');
+	var t=Y(wrap);
+	
+	function Y(p){var y=0;while(p){y +=p.offsetTop;p=p.offsetParent;}return y;}
+
+	var anchors = document.getElementById("anchorcontainer").getElementsByTagName("a");
+	for(var i=0;i<anchors.length;++i){
+		anchors[i].style.cursor = 'pointer';
+		anchors[i].onclick=function(){
+			var dest = 'anchor'+this.name;
+			wrap.scrollTop = Y($(dest)) - t;
+		}
+	}
+}
+
+function addEvent(ele, type, handler){
+ if(ele.addEventListener) ele.addEventListener(type, handler, false);
+ else ele.attachEvent("on"+type, handler);
+}
+
+addEvent(window, 'load', wInit);
+
+function changeCity(event){
+	event=event||window.event;
+	var src = event.target || window.event.srcElement;	
+	try{
+		parent.getWeather(src.innerHTML);	
+		parent.closeCityIframe();
+	}catch(e){
+	}
+}
+
+var ele = document.getElementById('closer');!ele?0:ele.onclick=function(d){
+					d=d||event;try{d.preventDefault()}catch(b){d.returnValue=false}
+					try{
+						parent.closeCityIframe();
+					}catch(e){
+					}
+					return false;
+}
+
+
+//setTimeout(wInit,0);
+</script>
+</body>
+</html>

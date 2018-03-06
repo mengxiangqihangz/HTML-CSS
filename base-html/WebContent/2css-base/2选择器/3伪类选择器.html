@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			a{
+				color: red;
+			}
+			
+			/*
+			 * 伪类：专门用来表示元素的一种状态
+			 * 	比如：访问过的超链接，比如普通的超链接，比如获取焦点的文本框
+			 * 当我们需要为处啊在这些特殊状态的元素设置样式时，就可以使用伪类
+			 */
+			
+			/* 
+			 * 为未访问过的普通链接设置颜色
+			 * :link
+			 * 为访问过的链接设置颜色
+			 * :visited
+			 * 		浏览器是通过历史记录来判断一个链接是否访问过，
+			 * 		由于涉及到隐私的问题，所有visited只能设置color
+			 * :hover 
+			 * 		表示鼠标移动的状态
+			 * :active
+			 * 		表示的是超链接被点击的状态
+			 */
+			
+			
+			/*a:link{
+				color: darkgreen;
+			}
+			a:visited{
+				color: red;
+				background: yellow;
+			}*/
+			/*背景色无效*/
+			/*
+			a:hover{
+				color: skyblue;
+				background: wheat;
+			}
+			a:active{
+				color: black;
+				background: cornsilk;
+			}*/
+			
+			
+			/* 
+			 * 文本框获取焦点以后，修改背景颜色
+			 */
+			input:focus{
+				background: yellow;
+			}
+			
+			/*
+			 * 为p标签选中的内容使用样式
+			 * 	可以使用::selection伪类
+			 *  *火狐需要采用另外一种方式
+			 */
+			p::selection{
+				background: orange;
+			}
+			p::-moz-selection{
+				background: orange;
+			}
+			
+		</style>
+		
+	</head>
+	<body>
+		
+		
+		<a class="abc" href="http://www.baidu.com">访问过的链接</a><br />
+		
+		<a class="bcd" href="http://www.baidu.com">未访问过的链接</a>
+		
+		
+		<p>
+			我是一个p标签
+		</p>
+		<form action="" method="post">
+			<input type="text" name="" id="" value="" />
+			<input type="submit" value=""/>
+		</form>
+	</body>
+</html>

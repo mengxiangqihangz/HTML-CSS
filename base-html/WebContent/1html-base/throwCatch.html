@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Java Script 的异常捕捉语句</title>
+</head>
+<body>
+    <script>
+        with (document){
+            write('with语句块可以避免重复书写对象');
+            try{
+                for(var i = 0;i<10;i++){
+                    write(i+"<br>");
+                    if(i>5){
+                        throw new Error('用户定义错误');
+                    }
+                }
+            }catch (e){
+                write('系统异常：'+e.message+'<br>');
+            }finally {
+                write('系统的finally语句块');
+            }
+        }
+        document.write('with语句块之外，必须写document，异常之外的语句不运行');
+
+    </script>
+</body>
+</html>

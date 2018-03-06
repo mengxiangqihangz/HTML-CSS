@@ -1,0 +1,267 @@
+/*reset*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}img{border:0;}address,caption,cite,code,dfn,em,strong,th{font-style:normal}ol,ul{list-style:none;}a{color:#025291;text-decoration:none;}a:hover{text-decoration:underline;}html{background-color:#fff}body{font-family:arial;font-size:14px;color:#333;}
+input{outline: none;}
+.c3{color:#333 !important;}
+.c6{color:#666 !important;}
+.fred{color:#CC0035!important;}
+.nobt{border-top:none !important;}
+.nobb{border-bottom:none !important;}
+.nomt{margin-top:0 !important;}
+.ac{text-align:center !important;}
+.ar{text-align:right !important;}
+.tu{text-decoration:underline !important;}
+.f14{font-size:14px !important;}
+
+/* header */
+.header{height:69px;width:960px;margin:0 auto;background:url(http://cache.soso.com/30d/img/web/haoqq_bg.jpg) repeat-x 0 65px;}
+h1{margin-top:7px;width:162px;float:left;height:59px;margin-right:32px;}
+h1 img{display:block;}
+.weather{width:435px;height:55px;float:left;}
+.weather h3{font-size:14px;color:#024CB5;width:80px;float:left;margin-top:25px;}
+.weather h3 span{text-align:center;display:block;}
+h3 #changeCity{cursor:pointer;}
+.weather h3 #changeCity{font-weight:normal;font-size:12px;color:#333;display:block;}
+.weather .mod{float:left;margin-top:13px;height:52px;width:78px;padding-left:14px;background:url(http://cache.soso.com/30d/img/web/haoqq_icos.gif) no-repeat right -208px;overflow:hidden;}
+.weather .mod1{width:67px;padding-left:0;}
+.weather .mod1 h4{font-size:12px;line-height:24px;font-weight:normal;}
+.weather .mod1 span{font-size:20px;}
+.weather .day{height:34px;line-height:24px;}
+.weather .day img{vertical-align:top;margin-right:5px; width:32px; height:32px;}
+.weather .day span{*margin-top:2px;zoom:1;}
+.weather .mod p{font-size:12px;white-space:nowrap;}
+.weather .last{line-height:26px;background:none;width:90px;padding-left:10px;}
+#lunarDateLink{ margin-left:5px;}
+
+/* func */
+.func{width:308px;float:right;}
+.func .name{padding-right:13px;background:url(http://cache.soso.com/30d/img/web/haoqq_icos.gif) no-repeat scroll right 1px;}
+.func .userdata{font-size:12px;text-align:right;line-height:22px;margin-bottom:15px;position:relative;padding-top:3px;}
+.func .userdata a{margin:0 7px;text-decoration:none;}
+.func .userdata .all{color:#666;text-decoration:none}
+.func .userdata span{color:#666;text-decoration:none}
+.func .userdata .off{display:none;}
+
+.func .login *{vertical-align:middle;}
+.func .login .txt{width:76px;height:15px;padding:2px;border:1px solid #A1A1A1;border-color:#A1A1A1 #E6E6E6 #E6E6E6 #A1A1A1;color:#989898;font-size:12px;}
+.func .login .txtonfocus{width:76px;height:15px;padding:2px;border:1px solid #A1A1A1;border-color:#A1A1A1 #E6E6E6 #E6E6E6 #A1A1A1;color: #000;font-size:12px;}
+.func .login select{width:90px;height:22px;border:1px solid #A1A1A1;border-color:#A1A1A1 #E6E6E6 #E6E6E6 #A1A1A1;color:#989898;font-size:12px;}
+.func .popup{position:absolute;right:150px;top:25px;width:64px;padding:5px 0 0 22px;background:#fff url(http://cache.soso.com/30d/img/web/haoqq_icos.gif) no-repeat 7px -272px;border:1px solid #CBCED3;z-index:200;text-align:left;}
+.func .popup div{height:22px;line-height:16px;text-align:left;font-size:12px;text-indent:5px;}
+.func .popup a:hover{text-decoration:underline;}
+.func .popdown{display:none;}
+
+/* searchBox */
+/*.searchBox{padding-left:82px;float:left;padding-top:20px;}
+.searchBox div{border-left:1px solid #6789A4;background:url(http://cache.soso.com/30d/img/web/haoqq_b17.jpg) repeat-x;float:left;height:33px;}
+.searchBox .txt{width:400px;height:23px;border:1px solid #7C7C7C;line-height:normal;font-size:16px; padding:6px 8px 0 6px;float:left;background:#fff url(http://cache.soso.com/30d/img/web/haoqq_b10.jpg) repeat-x;}
+.searchBox img{float:left;margin-right:10px;}
+.searchBox .sosoSearch{width:65px;height:29px;margin-top:1px; margin-left:6px;float:left;font-size:14px;background:url(http://cache.soso.com/30d/img/web/haoqq_bg.jpg) repeat-x 0 -138px;border:1px solid #7C7C7C;text-align:center;line-height:29px;color:#5D5D5D;font-weight:bold;}
+*/
+
+/* searchBox */
+.searchBox{padding-left:92px;float:left;padding-top:20px;}
+.searchBox img{float:left;margin-right:5px;margin-top:3px;}
+.searchBox .fcon{width:486px;float:left;height:30px;padding:3px 0 0 3px;background:url(http://cache.soso.com/30d/img/web/hao_searchBg2.gif) no-repeat;}
+.searchBox .txt{width:388px;height:20px;height:20px\9;color:#333;border:none;border-width:0;padding:5px 6px 0px 6px;float:left;font-size:16px;}
+.searchBox .sosoSearch{width:80px;height:27px;float:left;background:none;border:none;text-indent:-9999px;cursor:pointer;}
+
+
+/* sosoStyle */
+.sosoStyle{height:76px;background:url(http://cache.soso.com/30d/img/web/haoqq_bg.jpg) repeat-x 0 -4px;border:1px solid #B8D4E2;margin:5px auto;width:958px;}
+.sosoStyle .sosoTabs{margin-left:162px;line-height:35px;height:35px;}
+.sosoStyle .sosoTabs li{color:#065286;width:49px;height:35px;float:left;cursor:pointer}
+.sosoStyle .sosoTabs li a{color:#065286;}
+.sosoStyle .sosoTabs .current{color:#333;font-weight:bold;}
+.sosoStyle .sosoTabs .current a{color:#333;}
+.sosoStyle .sosoContent{padding-left:15px;clear:both;}
+.sosoStyle .sosoContent form{float:left;height:30px;width:530px;padding:5px 0 0 3px;background:url(http://cache.soso.com/30d/img/web/hao_searchBg.gif) no-repeat;}
+.sosoStyle .sosoContent img{float:left;margin-right:5px;margin-top:3px;}
+.sosoStyle .sosoContent .sosoWordsSp{position:relative;float:left;margin:0 7px 8px 0;z-index:99}
+.sosoStyle .sosoContent .sosoWords{ font-size:16px; line-height:normal; width:425px;height:20px;color:#BFBFBF;border:none;border-width:0;padding:2px 6px;float:left;font-family:arial;}
+
+.sosoStyle .sosoContent .sosoWordsOnFocus{ font-size:16px; line-height:normal; width:425px;height:20px;color:#000;border:none;border-width:0;padding:2px 6px;float:left;}
+
+.sosoStyle .sosoSearch{cursor:pointer;width:80px;height:27px;float:left;background:none;border:none;text-indent:-9999px;margin-left:5px;}
+
+.sosoStyle .sosoKw{font-size:12px;white-space:nowrap;padding-left:5px;text-align:center;width:230px;float:left;padding-top:8px;}
+.sosoStyle .sosoKw a:hover{color:#cb0808}
+.sosoStyle ul.morelist {border:1px solid #9eb6cc;width:62px;top:20px;left:0;position: absolute;background: #fff;z-index:1000;padding-top:3px;}
+.sosoStyle ul.morelist li{float:none;background:none;height:28px;width:auto;line-height:20px;}
+.sosoStyle ul.morelist a{display:block;width:100%;height:28px;line-height:28px;color:#000;text-align:left;text-indent:3px;font-family:arial}
+.sosoStyle ul.morelist .morePrd a{background-color: #f8f8f8;}
+.sosoStyle ul.morelist a:hover{background-color:#BFDCFA;text-decoration:none;}
+
+/* main */
+.main{width:960px;margin:0 auto;clear:both;}
+.sideMod{width:230px;float:left;}
+.sideMod td{text-align:left;vertical-align:top;}
+#withTip a:hover{position:relative;padding:2px 7px;left:-7px;background-color:#E6F1FA;*top:-1px;text-decoration:none;}
+#ignoreTip a:hover{position:static;padding:0;background-color:#FFFFFF;}
+#withTip .eng a:hover{top:0px\9}
+#withTip .qxiu a:hover{padding:0;left:0;top:0}
+.sideMod .omod td{font-size:12px;}
+.sideMod .mods{padding-top:2px;background:url(http://cache.soso.com/30d/img/web/haoqq_bg4.gif) no-repeat;}
+.sideMod .modcon{padding-bottom:2px;background:url(http://cache.soso.com/30d/img/web/haoqq_bg3.gif) no-repeat 0 bottom;}
+.sideMod .mod{border:1px solid #A2BCD3;border-width:0 1px;}
+.sideMod h3{height:30px;line-height:30px;font-size:14px;color:#333;text-indent:10px;margin-bottom:12px;background-color:#ECF6FF;border-top:1px solid #A3BBD3;}
+.sideMod .omod h3{background-color:#FFF7E0;width:228px;}
+.sideMod .omod{background:url(http://cache.soso.com/30d/img/web/haoqq_bg4.gif) no-repeat -230px 0;margin-top:10px;}
+.sideMod .omod .mod{border-color:#ECC898;}
+.sideMod .omod .modcon{background:url(http://cache.soso.com/30d/img/web/haoqq_bg3.gif) no-repeat -230px bottom;}
+.sideMod .modtab{border-top:1px solid #D3D3D3;border-left:1px solid #ECC898;border-right:1px solid #ECC898;}
+.sideMod .tabcon{padding:10px 0 6px 23px;}
+.sideMod .tabcon .txt{width:124px;height:16px;padding:2px;border:1px solid #7E9DB9;color:#9A9A9A;font-size:13px;}
+.sideMod .tabcon p{height:20px;line-height:20px;font-size:12px;padding-bottom:5px;overflow:hidden;}
+.sideMod .tabcon select{width:130px;height:20px;border:1px solid #7E9DB9;color:#9A9A9A;font-size:13px;}
+.sideMod .tabcon .title{width:52px;float:left;white-space:nowrap;color:#000;}
+.sideMod .tabcon .price{color:#FF5500;}
+.sideMod .tabcon .bn{width:72px;height:22px;margin-left:50px;display:block;text-align:center;line-height:22px;background:url(http://cache.soso.com/30d/img/web/haoqq_bg2.gif) no-repeat;font-weight:bold;color:#fff;font-size:12px;}
+.sideMod ul{height:28px;background-color:#F1F1F1;color:#D3D3D3;border-bottom:1px solid #d3d3d3;}
+.sideMod li{float:left;background-color:#F1F1F1;height:28px;line-height:28px;text-align:center;}
+.sideMod li a{margin:0 15px;color:#333;}
+.sideMod .current{width:76px;border-right:1px solid #D3D3D3;font-weight:bold;background-color:#fff;color:#333;position:relative;cursor:pointer;}
+.sideMod .current span{position:absolute;width:76px;height:30px;background-color:#fff;left:0;top:0;}
+
+/* maincon */
+.maincon{width:722px;float:right;}
+.maincon .mmod{padding-top:2px;background:url(http://cache.soso.com/30d/img/web/haoqq_bg4.gif) no-repeat -562px 0;}
+.maincon .mmod h3{height:29px;line-height:29px;text-indent:10px;color:#01538F;background:url(http://cache.soso.com/30d/img/web/haoqq_bg.jpg) repeat-x 0 -80px;margin-bottom:12px;font-size:14px;margin-top:6px;}
+.maincon .modcon{padding-bottom:2px;background:url(http://cache.soso.com/30d/img/web/haoqq_bg3.gif) no-repeat -460px bottom;}
+.maincon .modcon .con{border:1px solid #A2BCD3;border-width:0 2px;overflow:hidden;zoom:1;}
+.maincon .modcon .goodsites{padding-top:12px;}
+.maincon .sitesnav .tabs{height:31px;margin-bottom:-2px;}
+.maincon .sitesnav .tabs a{color:#333;}
+.maincon .sitesnav .tabs a:hover{text-decoration:underline;}
+.maincon .sitesnav .tabs li{cursor:pointer;float:left;height:29px;width:102px;padding-top:2px;background:url(http://cache.soso.com/30d/img/web/haoqq_bg2.gif) no-repeat -72px 0;margin-right:4px;position:relative;z-index:20;}
+.maincon .sitesnav .tabs span{display:block;text-align:center;line-height:29px;height:29px;width:98px;color:#025291;}
+.maincon .sitesnav li.current{background:#fff url(http://cache.soso.com/30d/img/web/haoqq_bg4.gif) no-repeat -460px 0;position:relative;}
+.maincon .sitesnav li.current span{border:1px solid #A2BBCF;border-width:0 2px;font-weight:bold;color:#333;}
+.maincon .searchAddr{line-height:22px;height:22px;float:right;white-space:nowrap;overflow:hidden;}
+.maincon .searchAddr .title{margin-right:5px;font-size:13px;}
+.maincon .searchAddr .txt{width:112px;font-family:arial;height:15px;padding:2px 20px 2px 3px;color:#999;border:1px solid #A1A1A1;border-color:#A1A1A1 #E6E6E6 #E6E6E6 #A1A1A1;}
+.maincon .searchAddr .bn{position:relative;width:18px;height:18px;left:183px;top:-20px;display:block;cursor:pointer;background:url(http://cache.soso.com/30d/img/web/haoqq_bg2.gif) no-repeat 0 -23px;}
+.maincon .modcon ul{overflow:hidden;zoom:1;}
+.maincon .modcon li{float:left;width:115px;height:26px;white-space:nowrap;overflow:hidden;white-space:nowrap;}
+.maincon .modcon li span{width:20px;float:left;height:20px;margin-right:3px;padding-left:3px;}
+.maincon .modcon li a{float:left;margin-top:1px;}
+.maincon .modcon li.qq span{background:url(http://cache.soso.com/30d/img/web/haoqq_icos.gif) no-repeat right -60px;}
+.maincon .modcon li.sina span{background:url(http://cache.soso.com/30d/img/web/haoqq_icos.gif) no-repeat right -83px;}
+.maincon .modcon li.baidu span{background:url(http://cache.soso.com/30d/img/web/haoqq_icos.gif) no-repeat right -107px;}
+.maincon .modcon li.net span{background:url(http://cache.soso.com/30d/img/web/haoqq_icos.gif) no-repeat right -132px;}
+.maincon .modcon li.sohu span{background:url(http://cache.soso.com/30d/img/web/haoqq_icos.gif) no-repeat right -157px;}
+.maincon .modcon li.fh span{background:url(http://cache.soso.com/30d/img/web/haoqq_icos.gif) no-repeat right -183px;}
+.maincon .mycon{padding:5px;}
+.maincon .mycon h5{font-size:14px;float:none;font-weight:normal;line-height:26px;padding-left:5px;}
+.maincon .mycon h5 span{color:#E38001;}
+.maincon .mycon .clearRe{font-size:12px;float:right;line-height:22px;}
+.maincon .mycon .record .hover .link{float:left;}
+.maincon .mycon .record .hover .icon_add{background:url(http://cache.soso.com/30d/img/web/haoqq_icos.gif) no-repeat right -19px; float:left; margin-top:7px; margin-left:5px; width:11px; height:11px;}
+.maincon .mycon .del .hover .link{float:left;}
+.maincon .mycon .del .hover .icon_del{background:url(http://cache.soso.com/30d/img/web/haoqq_icos.gif) no-repeat right -38px; float:left; margin-top:7px; margin-left:5px; width:9px; height:9px;}
+.maincon .mycon a:hover{color:#005294;}
+.maincon .mycon ul{padding-left:20px;line-height:24px;}
+.maincon .mycon li{width:112px;}
+.maincon .mycon .record{border-bottom:1px solid #C7D7E4;margin-bottom:5px;padding-bottom:5px;}
+.maincon .mycon .favor{padding-bottom:20px;height:127px;overflow:hidden;}
+.maincon .mycon .add{padding:10px 0;margin:5px 5px 10px;background-color:#F3F8FC;border:1px solid #D3DFEB;font-size:12px;}
+.maincon .mycon .add .txt{width:158px;height:16px;padding:2px 2px 0;font-size:12px;border:1px solid #A2BCD3;}
+.maincon .mycon .add .title{margin:0 5px 0 10px;}
+.maincon .mycon .add .bn{margin-left:10px;font-size:12px;}
+.maincon .msglink{line-height:31px;text-indent:5px;}
+.maincon .msglink{overflow:hidden;zoom:1;}
+.maincon .msglink li{float:left;width:240px;white-space:nowrap;overflow:hidden;font-size:12px;}
+.maincon .msglink a{color:#666;}
+.maincon .msglink a:hover{color:#025291;}
+.maincon .btmod .con{padding-bottom:5px;}
+.maincon .btmod .title{width:69px;text-indent:12px;}
+.maincon .btmod .title a{color:#8F3900;}
+.maincon .btmod li{width:98px;float:left;line-height:26px;height:27px;padding-left:0;}
+.maincon .btmod .more{width:60px;}
+
+/* qqlogin */
+.qqlogin{background-color:#F3F8FC;}
+.main .qqlogin ul{line-height:28px;padding-left:70px;margin-top:5px;font-size:12px;}
+.main .qqlogin ul li{float:none;height:28px;width:auto;}
+.main .qqlogin ul .tip{color:#56524f;}
+.main .qqlogin ul .bnlog{margin-top:12px;}
+.qqlogin ul a{color:#2573A3;}
+.qqlogin .quick{margin-right:15px;display:block;width:103px;height:28px;text-align:center;line-height:28px;background:url(http://cache.soso.com/30d/img/web/haoqq_b19.jpg) no-repeat;font-weight:bold;float:left;}
+.qqlogin .uselse{margin-top:12px;}
+
+/* footer */
+.footer{clear:both;padding:12px 0 5px;text-align:center;line-height:22px;font-size:12px;color:#015293;}
+.footer a{margin: 0 10px;}
+.footer .copyr{color:#666;}
+
+/*login*/
+#btn_login { background:url("http://cache.soso.com/30d/img/web/haoqq_go_icon.png") repeat scroll transparent; height:36px; width:154px;border:none; }
+
+/*page mask */
+#pageMask{ position:absolute;display:none;z-index:100;top:0;left:0;filter:alpha(opacity=50);opacity:0.5;background-color:#FFF;}
+#cityDiv{ position:absolute;width:400px;height:330px;padding:0;z-index:101;margin:0px;visibility:hidden;display:none;}
+#loginDiv{ position:absolute;width:400px;height:330px;padding:0;z-index:101;margin:0px;visibility:hidden;display:none;}
+#cityFrame,#loginFrame{ border:0px; width:100%; height:100%;}
+
+/* copy */
+.copy{text-align:center;color:#999;clear:both;line-height:100px;font-family:arial;}
+.copy a{color:#999;}
+
+/* poptip */
+.poptip{position:absolute;height:24px;font-size:12px;z-index:30;}
+.poptip .bl,
+.poptip .bt,
+.poptip .br,
+.poptip .bb{position:absolute;z-index:100;overflow:hidden;width:200px;height:2px;background-color:#6293BE;}
+.poptip .bl,
+.poptip .br{width:2px;height:24px;left:0;}
+.poptip .br{left:200px;background-color:#fff;height:20px;top:2px;}
+.poptip .bt{top:0;}
+.poptip .bb{bottom:0;}
+.poptip p{font-size:0;}
+.poptip .tipcon{position:absolute;width:339px;color:#BFDBF4;border:2px solid #6293BE;top:-49px;left:200px;z-index:90;background-color:#fff;width:430px;}
+.poptip .tipcon li{padding:0 6px;padding-top:5px;float:left;clear:left;width:418px;}
+.poptip .tipcon li.hovered{background-color:#E6F1FA;}
+.poptip .tipcon dl{line-height:26px;border-bottom:1px solid #D0E3F5;}
+.poptip .tipcon dt{float:left;width:35px;padding-left:6px;color:#005392;font-family:'ËÎÌו';}
+.poptip .tipcon dt a{font-weight:bold;}
+.poptip .tipcon dd{overflow:hidden;zoom:1;}
+.poptip .tipcon dd a{margin-left:8px;}
+.poptip .tipcon span{padding-left:8px;white-space:nowrap;float:left;}
+.tiphover{padding:3px;margin-left:-3px;background-color:#E6F1FA;text-decoration:underline;}
+
+/* subpage */
+.subpage{width:900px;}
+.subpage .subnav{line-height:24px;margin-top:10px;font-size:12px;}
+.subpage .subnav a{color:#333;}
+.subpage .mmod{padding-top:2px;background:url(http://cache.soso.com/30d/img/web/haoqq_bg4.gif) no-repeat -1284px 0;}
+.subpage .mmod h3{height:29px;line-height:29px;text-indent:10px;background:url(http://cache.soso.com/30d/img/web/haoqq_bg.jpg) repeat-x 0 -109px;margin-bottom:20px;font-size:14px;margin-top:8px;border-top:1px solid #A2BCD3;}
+.subpage .modcon{padding-bottom:2px;background:url(http://cache.soso.com/30d/img/web/haoqq_bg3.gif) no-repeat -1182px bottom;}
+.subpage .modcon .con{border:1px solid #A2BCD3;border-width:0 1px;overflow:hidden;zoom:1;width:898px;}
+.subpage .modcon .tab{padding-left:12px;font-weight:normal;font-size:14px;text-indent:0;}
+.subpage .modcon .tab span{float:left;width:52px;height:20px;text-align:center;line-height:20px;color:#015291;background-color:#E9F0FA;border:1px solid #A3BDD4;margin-right:4px;margin-top:8px;border-bottom:none;cursor:pointer;}
+.subpage .modcon .tab .current{color:#4B4B4B;background-color:#fff;font-weight:bold;}
+.subpage .modcon .tabcon{color:#000;padding:22px 0 20px 80px;overflow:hidden;zoom:1;}
+.subpage .modcon .tabcon ul{float:left;clear:left;width:736px;}
+.subpage .modcon .tabcon .title{background:#EBF2F8}
+.subpage .modcon .tabcon li{float:left;height:30px;line-height:30px;border-bottom:1px solid #D4E4F3;}
+.subpage .title li{border-top:1px solid #D4E4F3;font-weight:bold;}
+.subpage .t1{width:92px;padding-left:12px;border-left:1px solid #D4E4F3;}
+.subpage .t2{width:276px;font-weight:bold;word-spacing:5px;white-space:nowrap;}
+.subpage .t2 .redball{color:#AA0302;margin-right:8px;}
+.subpage .t2 .blueball{color:#006CB5;}
+.subpage .t3{width:75px;}
+.subpage .t4{width:99px;}
+.subpage .t5{width:125px;}
+.subpage .t6{width:55px;border-right:1px solid #D4E4F3;}
+.subpage .t6 img{margin-top:8px\9;}
+.subpage .modcon td{height:26px;vertical-align:top;text-align:left;}
+.subpage .filmlist{width:910px;overflow:hidden;zoom:1;padding:16px 0 18px 29px;font-size:12px; display:none;}
+.subpage .filmlist dl{width:147px;float:left;}
+.subpage .filmlist img{padding:1px;border:1px solid #ccc;display:block;width:96px;height:128px;}
+.subpage .filmlist dd{line-height:18px;padding-top:5px;color:#8B8B8B;}
+.subpage .filmlist .score strong{color:#FF6500;top:-1px;position:relative;}
+.subpage .filmlist .name{font-size:14px;}
+.subpage .filmlist .see{font-family:'ËÎÌו';}
+
+
+

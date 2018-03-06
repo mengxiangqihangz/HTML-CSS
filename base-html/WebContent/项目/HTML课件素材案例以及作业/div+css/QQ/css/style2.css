@@ -1,0 +1,354 @@
+* {
+    padding:0;
+    margin:0;
+}
+body, html {
+    height:100%;
+    font:12px/1.5 Tahoma, Helvetica, Arial, sans-serif;
+}
+.wrap {
+    width:1100px;
+    margin:0 auto;
+}
+ul {
+    list-style:none;
+}
+img {
+    border:0 none;
+    vertical-align:bottom;
+}
+a {
+    text-decoration:none;
+}
+.left {
+    float:left;
+}
+.right {
+    float:right;
+}
+.fix {
+    overflow:hidden;
+    clear:both;
+}
+.clearfix:after {
+    content:'';
+    clear:both;
+    height:0;
+    visibility:hidden;
+    display:block;
+}
+/**头部**/
+.top {
+    height:36px;
+    line-height:36px;
+    background:#545652;
+}
+.top a {
+    color:#DDD;
+    margin:0 15px;
+}
+.top a:hover {
+    color:#e64e3e;
+}
+/**logo**/
+.logo {
+    width:170px;
+    height:46px;
+    background:url(../img/logo_170x46.png) no-repeat;
+    margin-top:18px;
+}
+.logo span {
+    line-height:999;
+    display:inline-block;
+    overflow:hidden;
+    height:0;
+}
+/**导航**/
+.menu, .menu-main, .menu-tag, .menu-con a {
+    background:url(../img/header.png) no-repeat;
+}
+.menu {
+    background-repeat:repeat-x;
+    height:84px;
+}
+.nav-menu {
+    padding-left:50px;
+}
+.menu-main {
+    position:relative;
+    padding-left:38px;
+    height:84px;
+    margin-left:-8px;
+    background-position:0 -85px;
+}
+.menu-tag {
+    position:absolute;
+    display:block;
+    width:41px;
+    height:25px;
+    left:26px;
+    top:0;
+    line-height:999;
+    overflow:hidden;
+}
+.menu-tagz {
+    background-position:0 -676px;
+}
+.menu-main:hover .menu-tagz{
+    background-position:-40px -676px;
+
+}
+.menu-main:hover .menu-tagh{
+    background-position:-149px -676px;
+
+}
+.menu-main:hover  .menu-tag{
+    animation: move1 .3s linear both;
+}
+@keyframes move1 {
+    0%{
+        width: 0px;
+    }
+    33%{
+        width: 23px;
+    }
+    66%{
+        width: 46px;
+    }
+    100%{
+        width: 69px;
+    }
+}
+.menu-tagh {
+    background-position:-109px -676px;
+}
+
+
+
+
+
+.menu-con {
+    height:84px;
+}
+.menu-con li {
+    float:left;
+}
+.menu-con li a {
+    display:block;
+    width:108px;
+    height:84px;
+    line-height:999;
+    overflow:hidden;
+}
+.menu-con .item-mall {
+    background-position:0 -170px;
+}
+.menu-con .item-mall:hover {
+    background-position:-108px -170px;
+}
+.menu-con .item_travel {
+    background-position:0 -254px;
+}
+.menu-con .item_travel:hover {
+    background-position:-108px -254px;
+}
+.menu-con .item_gmall {
+    background-position:0 -338px;
+}
+.menu-con .item_gmall:hover {
+    background-position:-108px -338px;
+}
+.menu-con .item_about {
+    background-position:0 -506px;
+}
+.menu-con .item_about:hover {
+    background-position:-108px -506px;
+}
+.menu-con .item_act {
+    background-position:0 -422px;
+}
+.menu-con .item_act:hover {
+    background-position:-108px -422px;
+}
+.menu-con .item_i {
+    background-position:0 -590px;
+}
+.menu-con .item_i:hover {
+    background-position:-108px -590px;
+}
+/**导航右侧**/
+.menu-r a {
+    background:url(../img/iconsB.png) no-repeat;
+    width:24px;
+    height:24px;
+    line-height:999;
+    overflow:hidden;
+    margin-left:14px;
+    float:left;
+    margin-top:32px;
+    transition: all 0.5s ease;
+
+}
+.menu-r .icon-bbs {
+    background-position:0 -21px;
+}
+.menu-r .icon-bbs:hover {
+    background-position:0 -46px;
+}
+.menu-r .icon-wb {
+    background-position:-24px -21px;
+}
+.menu-r .icon-wb:hover {
+    background-position:-24px -46px;
+}
+.menu-r .icon-mail {
+    background-position:-49px -21px;
+}
+.menu-r .icon-mail:hover {
+    background-position:-49px -46px;
+}
+/**主内容**/
+
+
+/**底部**/
+footer {
+    margin-top:35px;
+    text-align:center;
+    padding-bottom:15px;
+}
+footer p {
+    margin-top:5px;
+}
+footer p, footer p a {
+    color:#777;
+}
+footer p a {
+    margin:0 5px;
+}
+footer p a:hover {
+    text-decoration:underline;
+    color:red;
+}
+/**右侧**/
+.ad, .rightMenu {
+    position:fixed;
+    left:50%;
+    bottom:20px;
+    z-index:99;
+    margin-left:555px;
+}
+.ad {
+    border:1px #ccc solid;
+}
+.rightMenuBox, .backTop, .menu-edu, .menu-wx, .edu-main li, .edu-main li .edu-img, .edu-btmImg {
+    background:url(../img/icon_top.png) no-repeat;
+}
+.rightMenu {
+    width:45px;
+    height:125px;
+    bottom:-150px;
+}
+.rightMenuBox {
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:12;
+    width:45px;
+    height:125px;
+    background-position:-11px -82px;
+}
+.backTop {
+    display: block;
+    width: 36px;
+    height: 39px;
+    background-position: -63px -82px;
+    margin-left: 5px;
+    margin: 3px 0 0 6px;
+    overflow:hidden;
+    line-height:999;
+}
+.backTop:hover {
+    background-position: -100px -82px;
+}
+.menu-edu {
+    width: 21px;
+    height: 19px;
+    background-position: -62px -145px;
+    display: block;
+    margin: 12px auto 0;
+}
+.menu-wx {
+    display: block;
+    width: 23px;
+    height: 19px;
+    margin: 19px auto 0;
+    background-position: -85px -145px;
+}
+.rightMenuHover {
+    position:absolute;
+    border:1px #d7d7d7 solid;
+    z-index:10;
+    right:20px;
+    bottom:2px;
+    background:rgba(255, 255, 255, .94);
+}
+.edu-main {
+    height:120px;
+    width:700px;
+    display:none;
+}
+.edu-main li {
+    float: left;
+    width: 164px;
+    height: 120px;
+    padding-right: 9px;
+    background-position: 163px -82px;
+}
+.edu-main li .edu-img {
+    width: 52px;
+    height: 42px;
+    display: block;
+    margin: 24px auto 10px;
+}
+.edu-main li .edu-img1 {
+    background-position:0 -206px;
+}
+.edu-main li .edu-img2 {
+    background-position:-52px -206px;
+}
+.edu-main li .edu-img3 {
+    background-position:-104px -206px;
+}
+.edu-main li .edu-img4 {
+    background-position:-156px -206px;
+}
+.edu-main li .edu-btm {
+    color: #b0947e;
+    padding-left: 18px;
+}
+.edu-btmImg {
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 6px;
+}
+.edu-step1 {
+    background-position: -62px -123px;
+}
+.edu-step2 {
+    background-position: -83px -123px;
+}
+.edu-step3 {
+    background-position: -104px -123px;
+}
+.edu-step4 {
+    background-position: -125px -123px;
+}
+.edu-wx-img {
+    width:186px;
+    height:96px;
+    display:none;
+    padding:12px;
+    text-align:center;
+    color: #555;
+}

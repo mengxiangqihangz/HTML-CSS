@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/style2.css"/>
+    <link rel="stylesheet" href="css/animation.css"/>
+    <link href="css/zzsc.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/pbl.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/texiao.js"></script>
+
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/index.js"></script>
+
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+
+
+    <script>
+        /**/
+        ;(function($){
+            var
+            //参数
+                    setting={
+                        column_width:240,//列宽
+                        column_className:'waterfall_column',//列的类名
+                        column_space:10,//列间距
+                        cell_selector:'.cell',//要排列的砖块的选择器，context为整个外部容器
+                        img_selector:'img',//要加载的图片的选择器
+                        auto_imgHeight:true,//是否需要自动计算图片的高度
+                        fadein:true,//是否渐显载入
+                        fadein_speed:600,//渐显速率，单位毫秒
+                        insert_type:1, //单元格插入方式，1为插入最短那列，2为按序轮流插入
+                        getResource:function(index){ }  //获取动态资源函数,必须返回一个砖块元素集合,传入参数为加载的次数
+                    },
+            //
+                    waterfall=$.waterfall={},//对外信息对象
+                    $waterfall=null;//容器
+            waterfall.load_index=0, //加载次数
+                    $.fn.extend({
+                        waterfall:function(opt){
+                            opt=opt||{};
+                            setting=$.extend(setting,opt);
+                            $waterfall=waterfall.$waterfall=$(this);
+                            waterfall.$columns=creatColumn();
+                            render($(this).find(setting.cell_selector).detach(),false); //重排已存在元素时强制不渐显
+                            waterfall._scrollTimer2=null;
+                            $(window).bind('scroll',function(){
+                                clearTimeout(waterfall._scrollTimer2);
+                                waterfall._scrollTimer2=setTimeout(onScroll,300);
+                            });
+                            waterfall._scrollTimer3=null;
+                            $(window).bind('resize',function(){
+                                clearTimeout(waterfall._scrollTimer3);
+                                waterfall._scrollTimer3=setTimeout(onResize,300);
+                            });
+                        }
+                    });
+            function creatColumn(){//创建列
+                waterfall.column_num=calculateColumns();//列数
+                //循环创建列
+                var html='';
+                for(var i=0;i<waterfall.column_num;i++){
+                    html+='<div class="'+setting.column_className+'" style="width:'+setting.column_width+'px; display:inline-block; *display:inline;zoom:1; margin-left:'+setting.column_space/2+'px;margin-right:'+setting.column_space/2+'px; vertical-align:top; overflow:hidden"></div>';
+                }
+                $waterfall.prepend(html);//插入列
+                return $('.'+setting.column_className,$waterfall);//列集合
+            }
+            function calculateColumns(){//计算需要的列数
+                var num=Math.floor(($waterfall.innerWidth())/(setting.column_width+setting.column_space));
+                if(num<1){ num=1; } //保证至少有一列
+                return num;
+            }
+            function render(elements,fadein){//渲染元素
+                if(!$(elements).length) return;//没有元素
+                var $columns = waterfall.$columns;
+                $(elements).each(function(i){
+                    if(!setting.auto_imgHeight||setting.insert_type==2){//如果给出了图片高度，或者是按顺序插入，则不必等图片加载完就能计算列的高度了
+                        if(setting.insert_type==1){
+                            insert($(elements).eq(i),setting.fadein&&fadein);//插入元素
+                        }else if(setting.insert_type==2){
+                            insert2($(elements).eq(i),i,setting.fadein&&fadein);//插入元素
+                        }
+                        return true;//continue
+                    }
+                    if($(this)[0].nodeName.toLowerCase()=='img'||$(this).find(setting.img_selector).length>0){//本身是图片或含有图片
+                        var image=new Image;
+                        var src=$(this)[0].nodeName.toLowerCase()=='img'?$(this).attr('src'):$(this).find(setting.img_selector).attr('src');
+                        image.onload=function(){//图片加载后才能自动计算出尺寸
+                            image.onreadystatechange=null;
+                            if(setting.insert_type==1){
+                                insert($(elements).eq(i),setting.fadein&&fadein);//插入元素
+                            }else if(setting.insert_type==2){
+                                insert2($(elements).eq(i),i,setting.fadein&&fadein);//插入元素
+                            }
+                            image=null;
+                        }
+                        image.onreadystatechange=function(){//处理IE等浏览器的缓存问题：图片缓存后不会再触发onload事件
+                            if(image.readyState == "complete"){
+                                image.onload=null;
+                                if(setting.insert_type==1){
+                                    insert($(elements).eq(i),setting.fadein&&fadein);//插入元素
+                                }else if(setting.insert_type==2){
+                                    insert2($(elements).eq(i),i,setting.fadein&&fadein);//插入元素
+                                }
+                                image=null;
+                            }
+                        }
+                        image.src=src;
+                    }else{//不用考虑图片加载
+                        if(setting.insert_type==1){
+                            insert($(elements).eq(i),setting.fadein&&fadein);//插入元素
+                        }else if(setting.insert_type==2){
+                            insert2($(elements).eq(i),i,setting.fadein&&fadein);//插入元素
+                        }
+                    }
+                });
+            }
+            function public_render(elems){//ajax得到元素的渲染接口
+                render(elems,true);
+            }
+            function insert($element,fadein){//把元素插入最短列
+                if(fadein){//渐显
+                    $element.css('opacity',0).appendTo(waterfall.$columns.eq(calculateLowest())).fadeTo(setting.fadein_speed,1);
+                }else{//不渐显
+                    $element.appendTo(waterfall.$columns.eq(calculateLowest()));
+                }
+            }
+            function insert2($element,i,fadein){//按序轮流插入元素
+                if(fadein){//渐显
+                    $element.css('opacity',0).appendTo(waterfall.$columns.eq(i%waterfall.column_num)).fadeTo(setting.fadein_speed,1);
+                }else{//不渐显
+                    $element.appendTo(waterfall.$columns.eq(i%waterfall.column_num));
+                }
+            }
+            function calculateLowest(){//计算最短的那列的索引
+                var min=waterfall.$columns.eq(0).outerHeight(),min_key=0;
+                waterfall.$columns.each(function(i){
+                    if($(this).outerHeight()<min){
+                        min=$(this).outerHeight();
+                        min_key=i;
+                    }
+                });
+                return min_key;
+            }
+            function getElements(){//获取资源
+                $.waterfall.load_index++;
+                return setting.getResource($.waterfall.load_index,public_render);
+            }
+            waterfall._scrollTimer=null;//延迟滚动加载计时器
+            function onScroll(){//滚动加载
+                clearTimeout(waterfall._scrollTimer);
+                waterfall._scrollTimer=setTimeout(function(){
+                    var $lowest_column=waterfall.$columns.eq(calculateLowest());//最短列
+                    var bottom=$lowest_column.offset().top+$lowest_column.outerHeight();//最短列底部距离浏览器窗口顶部的距离
+                    var scrollTop=document.documentElement.scrollTop||document.body.scrollTop||0;//滚动条距离
+                    var windowHeight=document.documentElement.clientHeight||document.body.clientHeight||0;//窗口高度
+                    if(scrollTop>=bottom-windowHeight){
+                        render(getElements(),true);
+                    }
+                },100);
+            }
+            function onResize(){//窗口缩放时重新排列
+                if(calculateColumns()==waterfall.column_num) return; //列数未改变，不需要重排
+                var $cells=waterfall.$waterfall.find(setting.cell_selector);
+                waterfall.$columns.remove();
+                waterfall.$columns=creatColumn();
+                render($cells,false); //重排已有元素时强制不渐显
+            }
+        })(jQuery);
+
+        /**/
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+<!--头部-->
+<header class="top">
+    <div class="wrap">
+        <a href="">赚彩贝</a>
+        <a href="">花彩贝</a>
+    </div>
+    <div class="rig"></div>
+</header>
+<!--导航-->
+<section class="menu">
+    <div class="wrap">
+        <a href="" class="logo left"><span>QQ彩贝积分</span></a>
+        <div class="nav-menu left">
+            <div class="menu-main left">
+                <span class="menu-tag menu-tagz">赚积分</span>
+                <ul class="menu-con">
+                    <li>
+                        <a href="" class="item-mall">返回商城</a>
+                    </li>
+                    <li>
+                        <a href="" class="item_travel">商旅频道</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="menu-main left">
+                <span class="menu-tag menu-tagh">花积分</span>
+                <ul class="menu-con">
+                    <li>
+                        <a href="" class="item_gmall">积分商城</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="menu-main left">
+                <ul class="menu-con">
+                    <li>
+                        <a href="" class="item_about">了解彩贝</a>
+                    </li>
+                    <li>
+                        <a href="" class="item_act">彩贝活动</a>
+                    </li>
+                    <li>
+                        <a href="" class="item_i ">个人中心</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="menu-r right">
+            <a href="" class="icon-bbs"></a>
+            <a href="" class="icon-wb"></a>
+            <a href="" class="icon-mail"></a>
+        </div>
+    </div>
+</section>
+
+
+<!--主体-->
+<section class="sections">
+
+    <article class="lsyA">
+        <div class="lsyMain">
+
+            <!--菜单列表-->
+            <nav class="lsyNav">
+                <div class="lsyReturn1"><span></span>购物返彩贝商家
+                </div>
+                <div class="lsyReturn2"></div>
+                <ul>
+                    <li class="lsyLi">
+                        <h3>数码家电</h3>
+                        <div class="lsyLi1">
+                            <a href="">京东</a>
+                            <a href="">易迅</a>
+                            <a href="">苏宁易购</a>
+                            <div></div>
+                        </div>
+                        <span></span>
+                        <!--二级菜单-->
+                        <div class="lsy-list lsyHid">
+                            <div>
+                                <h4>热门分类</h4>
+                                <div>
+                                    <a href="">京东</a>
+                                    <a href="">易迅</a>
+                                    <a href="">苏宁易购</a>
+                                    <a href="">新蛋商城</a>
+                                    <a href="">手机数码</a>
+                                    <a href="">摄像影音</a>
+                                    <a href="">耳麦音响</a>
+                                    <br/>
+                                    <a href="">国美在线</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>热门商家</h4>
+                                <ul class="lsyUl">
+                                    <li>
+                                        <a href=""><img src="img/0.png"/></a>
+                                        <a href=""></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (1).png"/></a>
+                                        <a href=""></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (2).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (3).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0.jpg"/></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="">
+                                <span>查看全部商家</span>
+                                <em></em>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="lsyLi">
+                        <h3>食品酒水</h3>
+                        <div class="lsyLi1">
+                            <a href="">美食特产</a>
+                            <a href="">酒水茶叶</a>
+                            <a href="">蛋糕预订</a>
+                            <div></div>
+                        </div>
+                        <span></span>
+                        <!--二级菜单-->
+                        <div class="lsy-list lsyHid">
+                            <div>
+                                <h4>热门分类</h4>
+                                <div>
+                                    <a href="">美食特产</a>
+                                    <a href="">酒水茶叶</a>
+                                    <a href="">蛋糕预订</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>热门商家</h4>
+                                <ul class="lsyUl">
+                                    <li>
+                                        <a href=""><img src="img/0.png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (1).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (2).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (3).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0.jpg"/></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="">
+                                <span>查看全部商家</span>
+                                <em></em>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="lsyLi">
+                        <h3>商旅出行</h3>
+                        <div class="lsyLi1">
+                            <a href="">酒店预订</a>
+                            <a href="">机票预订</a>
+                            <a href="">商旅综合</a>
+                            <div></div>
+                        </div>
+                        <span></span>
+                        <!--二级菜单-->
+                        <div class="lsy-list lsyHid">
+                            <div>
+                                <h4>热门分类</h4>
+                                <div>
+                                    <a href="">酒店预订</a>
+                                    <a href="">机票预订</a>
+                                    <a href="">商旅综合</a>
+                                    <a href="">度假预订</a>
+                                    <a href="">火车票预订</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>热门商家</h4>
+                                <ul class="lsyUl">
+                                    <li>
+                                        <a href=""><img src="img/0.png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (1).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (2).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (3).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0.jpg"/></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="">
+                                <span>查看全部商家</span>
+                                <em></em>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="lsyLi">
+                        <h3>日用百货</h3>
+                        <div class="lsyLi1">
+                            <a href="">飞飞商城</a>
+                            <a href="">图书教育</a>
+                            <a href="">百货</a>
+                            <div></div>
+                        </div>
+                        <span></span>
+                        <!--二级菜单-->
+                        <div class="lsy-list lsyHid">
+                            <div>
+                                <h4>热门分类</h4>
+
+                                <div>
+                                    <a href="">飞飞商城</a>
+                                    <a href="">图书教育</a>
+                                    <a href="">百货</a>
+                                    <a href="">家纺家具</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>热门商家</h4>
+                                <ul class="lsyUl">
+                                    <li>
+                                        <a href=""><img src="img/0.png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (1).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (2).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (3).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0.jpg"/></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="">
+                                <span>查看全部商家</span>
+                                <em></em>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="lsyLi">
+                        <h3>男女服装</h3>
+                        <div class="lsyLi1">
+                            <a href="">时尚女装</a>
+                            <a href="">精品男装</a>
+                            <a href="">男女内衣</a>
+                            <div></div>
+                        </div>
+                        <span></span>
+                        <!--二级菜单-->
+                        <div class="lsy-list lsyHid lsyPosition1">
+                            <div>
+                                <h4>热门分类</h4>
+                                <div>
+                                    <a href="">时尚女装</a>
+                                    <a href="">精品男装</a>
+                                    <a href="">男女内衣</a>
+                                    <a href="">综合商城</a>
+                                    <a href="">限时特卖</a>
+                                    <a href="">淘宝品牌</a>
+                                    <a href="">休闲服饰</a>
+                                    <a href="">运动户外</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>热门商家</h4>
+                                <ul class="lsyUl">
+                                    <li>
+                                        <a href=""><img src="img/0.png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (1).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (2).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (3).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0.jpg"/></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="">
+                                <span>查看全部商家</span>
+                                <em></em>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="lsyLi">
+                        <h3>鞋包配饰</h3>
+                        <div class="lsyLi1">
+                            <a href="">潮流女鞋</a>
+                            <a href="">商务男鞋</a>
+                            <a href="">时尚包包</a>
+                            <div></div>
+                        </div>
+                        <span></span>
+                        <!--二级菜单-->
+                        <div class="lsy-list lsyHid lsyPosition2">
+                            <div>
+                                <h4>热门分类</h4>
+                                <div>
+                                    <a href="">潮流女鞋</a>
+                                    <a href="">商务男鞋 </a>
+                                    <a href="">时尚包包</a>
+                                    <a href="">运动休闲</a>
+                                    <a href="">珠宝首饰</a>
+                                    <a href="">经典腕表</a>
+                                    <a href="">户外生活</a>
+                                    <a href="">奢侈品</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>热门商家</h4>
+                                <ul class="lsyUl">
+                                    <li>
+                                        <a href=""><img src="img/0.png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (1).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (2).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (3).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0.jpg"/></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="">
+                                <span>查看全部商家</span>
+                                <em></em>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="lsyLi">
+                        <h3>美容美妆</h3>
+                        <div class="lsyLi1">
+                            <a href="">天天网</a>
+                            <a href="">美妆商城</a>
+                            <a href="">眼镜美瞳</a>
+                            <div></div>
+                        </div>
+                        <span></span>
+                        <!--二级菜单-->
+                        <div class="lsy-list lsyHid lsyPosition3">
+                            <div>
+                                <h4>热门分类</h4>
+                                <div>
+                                    <a href="">天天网</a>
+                                    <a href="">美妆商城</a>
+                                    <a href="">眼镜美瞳</a>
+                                    <a href="">品牌商城</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>热门商家</h4>
+                                <ul class="lsyUl">
+                                    <li>
+                                        <a href=""><img src="img/0.png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (1).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (2).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (3).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0.jpg"/></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="">
+                                <span>查看全部商家</span>
+                                <em></em>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="lsyLi">
+                        <h3>母婴保健</h3>
+                        <div class="lsyLi1">
+                            <a href="">壹药网</a>
+                            <a href="">康爱多</a>
+                            <a href="">医药保健</a>
+                            <div></div>
+                        </div>
+                        <span></span>
+                        <!--二级菜单-->
+                        <div class="lsy-list lsyHid lsyPosition4">
+                            <div>
+                                <h4>热门分类</h4>
+                                <div>
+                                    <a href="">壹药网</a>
+                                    <a href="">康爱多</a>
+                                    <a href="">医药保健</a>
+                                    <a href="">成人用品</a>
+                                    <a href="">母婴商城</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>热门商家</h4>
+                                <ul class="lsyUl">
+                                    <li>
+                                        <a href=""><img src="img/0.png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (1).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (2).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (3).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0.jpg"/></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="">
+                                <span>查看全部商家</span>
+                                <em></em>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="lsyLi">
+                        <h3>娱乐生活</h3>
+                        <div class="lsyLi1">
+                            <a href="">游戏</a>
+                            <a href="">彩票</a>
+                            <a href="">演出票务</a>
+                            <div></div>
+                        </div>
+                        <span></span>
+                        <!--二级菜单-->
+                        <div class="lsy-list lsyHid lsyPosition5">
+                            <div class="lsyUl">
+                                <h4>热门分类</h4>
+                                <div>
+                                    <a href="">游戏</a>
+                                    <a href="">彩票</a>
+                                    <a href="">演出票务</a>
+                                    <a href="">线上冲印</a>
+                                    <a href="">生活服务</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>热门商家</h4>
+                                <ul class="lsyUl">
+                                    <li>
+                                        <a href=""><img src="img/0.png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (1).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (2).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0 (3).png"/></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><img src="img/0.jpg"/></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="">
+                                <span>查看全部商家</span>
+                                <em></em>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!--中间轮播-->
+
+            <!--<div class="lsyCP">
+                <ul>
+                    <li><img src="img/focus3.jpg"/></li>
+                    <li><img src="img/focus1.jpg"/></li>
+                    <li><img src="img/focus2.jpg"/></li>
+                    <li><img src="img/focus4.jpg"/></li>
+                </ul>
+                <ul>
+                    <li><a href="">早市天黑黑四周年庆</a></li>
+                    <li><a href="">办卡领取双肩包</a></li>
+                    <li><a href="">音乐消暑 冰爽一夏</a></li>
+                    <li><a href="">腾讯积分会员店</a></li>
+                </ul>
+            </div>-->
+            <div class="focus">
+               <ul class="silde">
+                            <li><img src="img/focus3.jpg"/></li>
+                            <li><img src="img/focus1.jpg"/></li>
+                            <li><img src="img/focus2.jpg"/></li>
+                            <li><img src="img/focus4.jpg"/></li>
+                        </ul>
+                        <ol class="silde-page">
+                            <li class="current"><a href="">早市天黑黑四周年庆</a></li>
+                            <li><a href="">办卡领取双肩包</a></li>
+                            <li><a href="">音乐消暑 冰爽一夏</a></li>
+                            <li><a href="">腾讯积分会员店</a></li>
+                        </ol>
+              </div>
+            <!--彩贝还能做什么-->
+            <div class="lsyCBD">
+                <div class="lsyCBDback"></div>
+                <dl class="lsyCBDtext">
+                    <dt>彩贝能做什么?</dt>
+                    <dd>
+                        <span></span>
+                        <a href="">100彩贝=￥1.00元</a>
+                    </dd>
+                    <dd>
+                        <span></span>
+                        <a href="">尊享优质商旅预订服务</a>
+                    </dd>
+                    <dd>
+                        <span></span>
+                        <a href="">可兑换近千款精美礼品</a>
+                    </dd>
+                </dl>
+
+
+
+            </div>
+            <!--中间展示-->
+            <div class="lsymiddle">
+                <div>
+                    <a href=""><img src="img/m1.jpg"/></a>
+                </div>
+                <div>
+                    <a href=""><img src="img/m2.jpg"/></a>
+                </div>
+                <div>
+                    <a href=""><img src="img/m3.jpg"/></a>
+                </div>
+                <!--快速入口-->
+                <div class="lsySpeed">
+                    <h3>快速入口</h3>
+                    <ul>
+                        <li><a href=""><span></span>商家导航</a> </li>
+                        <li><a href=""><span></span>拍拍返利</a> </li>
+                        <li><a href=""><span></span>腾讯业务</a> </li>
+                        <li><a href=""><span></span>娱乐生活</a> </li>
+                        <li><a href=""><span></span>拾贝任务</a> </li>
+                        <li><a href=""><span></span>兑换码激活</a> </li>
+                    </ul>
+                    <!--关注惊喜-->
+                    <div class="lsySpr">
+                        <h3>关注彩贝微信有惊喜</h3>
+                        <span><img src="img/showqrcode.jpg" width="80" height="80"/> </span>
+                        <span></span>
+                    </div>
+                </div>
+                <div>
+                    <a href=""><img src="img/m4.jpg"/></a>
+                </div>
+                <div>
+                    <a href=""><img src="img/m5.jpg"/></a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+</section>
+<!--内容2-->
+
+<section class="sections1">
+
+    <div class="sec2">
+        <h2 class="jf-hd">
+            <span></span>积分商城<span><span class="fc1">100</span>彩贝=¥<span class="fc1">1.00</span>元</span>
+        </h2>
+
+    </div>
+
+
+</section>
+<!--瀑布流-->
+<!---->
+<section class="pbl">
+    <div id="waterfall">
+        <div class="cell"><a href="#"><img src="images/1.jpg" /></a><p><a>欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/2.jpg" /></a><p><a>女神的婚纱季，新款婚纱，高端</a></p></div>
+        <div class="cell"><a href="#"><img src="images/3.jpg" /></a><p><a >美尔雅大牌羊毛单西搭配同色休闲裤 色彩统一 品位立显</a></p></div>
+        <div class="cell"><a href="#"><img src="images/4.jpg" /></a><p><a>采用顶级的羊皮材料，更时尚，更有格调！搭配秋冬服饰更有独特的韵味！</a></p></div>
+        <div class="cell"><a href="#"><img src="images/5.jpg" /></a><p><a >慢跑鞋无疑是整个2014年的时尚宠儿。除却功能性以及对足部的保护之外，选择一双款型时尚，配色亮眼的慢跑鞋绝对是您对自己时尚之道最好的诠释。乔丹时尚功能休闲慢跑鞋以出色的性能，时尚的造型</a></p></div>
+        <div class="cell"><a href="#"><img src="images/6.jpg" /></a><p><a >圣迩尼—让你怦然心动，2014最新潮流性感个性款式，穿出不一样的时尚！</a></p></div>
+        <div class="cell"><a href="#"><img src="images/7.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/8.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+
+        <div class="cell"><a href="#"><img src="images/9.jpg" /></a><p><a>欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/10.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/11.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/12.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/13.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/14.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/15.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/16.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+
+        <div class="cell"><a href="#"><img src="images/17.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/18.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/19.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/20.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/21.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/22.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/23.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/24.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+
+        <div class="cell"><a href="#"><img src="images/25.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/26.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/27.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/28.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/29.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/30.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/31.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/32.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+
+        <div class="cell"><a href="#"><img src="images/33.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/34.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/35.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/36.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/39.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/40.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/41.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/42.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+
+        <div class="cell"><a href="#"><img src="images/43.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/44.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/45.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/46.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/48.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/49.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/50.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+
+        <div class="cell"><a href="#"><img src="images/51.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/52.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/53.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/54.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/55.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/56.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/57.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/58.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+
+        <div class="cell"><a href="#"><img src="images/59.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/60.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/61.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/62.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/63.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/64.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/65.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/66.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/67.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+        <div class="cell"><a href="#"><img src="images/68.jpg" /></a><p><a >欧美时尚搭配，无论是朋友聚会，逛街都是焦点</a></p></div>
+
+
+    </div>
+</section>
+
+<script>
+    var opt={
+        getResource:function(index,render){//index为已加载次数,render为渲染接口函数,接受一个dom集合或jquery对象作为参数。通过ajax等异步方法得到的数据可以传入该接口进行渲染，如 render(elem)
+            if(index>=7) index=index%7+1;
+            var html='';
+            for(var i=20*(index-1);i<20*(index-1)+20;i++){H
+                var k='';
+                for(var ii=0;ii<3-i.toString().length;ii++){
+                    k+='0';
+                }
+                k+=i;
+                var src="http://cued.xunlei.com/demos/publ/img/P_"+k+".jpg";
+                html+='<div class="cell"><a href="#"><img src="'+src+'" /></a><p>'+k+'</p></div>';
+            }
+            return $(html);
+        },
+        auto_imgHeight:true,
+        insert_type:1
+    }
+    $('#waterfall').waterfall(opt);
+</script>
+<!---->
+
+<!--版权-->
+<section class="wrap">
+    <footer>
+        <p>
+            <a href="">关于腾讯</a>|
+            <a href="">About Tencent</a>|
+            <a href="">服务条款</a>|
+            <a href="">广告服务</a>|
+            <a href="">腾讯招聘</a>|
+            <a href="">客服中心</a>|
+            <a href="">网站导航</a>
+        </p>
+        <p>Copyright©1998-2015 Tencent. All Rights Reserved.</p>
+        <p>腾讯公司 版权所有</p>
+    </footer>
+</section>
+<!--右侧广告-->
+<div class="ad">
+    <img src="img/right.png"/>
+</div>
+<!--右侧菜单-->
+<div class="rightMenu">
+    <div class="rightMenuBox">
+        <a href="javascript:void(0);" class="backTop">返回顶部</a>
+        <span class="menu-edu rightMenuBtn"></span>
+        <span class="menu-wx rightMenuBtn"></span>
+    </div>
+    <div class="edu-main rightMenuHover">
+        <ul>
+            <li>
+                <p class="edu-img edu-img1"></p>
+                <p class="edu-btm fix">
+                    <span class="edu-btmImg edu-step1"></span>
+                    <span class="left">登录QQ彩贝<br/>返利商城</span>
+                </p>
+            </li>
+            <li>
+                <p class="edu-img edu-img2"></p>
+                <p class="edu-btm fix">
+                    <span class="edu-btmImg edu-step2"></span>
+                    <span class="left">去商家购物，免注册、<br/>逾300家认证商家</span>
+                </p>
+            </li>
+            <li>
+                <p class="edu-img edu-img3"></p>
+                <p class="edu-btm fix">
+                    <span class="edu-btmImg edu-step3"></span>
+                    <span class="left">完成交易<br/>商家核对订单</span>
+                </p>
+            </li>
+            <li>
+                <p class="edu-img edu-img4"></p>
+                <p class="edu-btm fix">
+                    <span class="edu-btmImg edu-step4"></span>
+                    <span class="left">订单核对有效<br/>彩贝到账</span>
+                </p>
+            </li>
+        </ul>
+    </div>
+    <div class="edu-wx-img rightMenuHover">
+        <img src="img/showqrcode.jpg" width="80" height="80"/>
+        <p>关注彩贝微信，获取优惠信息</p>
+    </div>
+</div>
+
+</body>
+</html>

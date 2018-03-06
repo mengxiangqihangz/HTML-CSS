@@ -1,0 +1,621 @@
+<!DOCTYPE html PUBLIC "-//W2C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+<title>网址导航</title>
+<link href="style/hao.qq.css" rel="stylesheet" type="text/css" />
+
+<style>
+    .nodisplay{
+        display:none;
+    }
+    .hidden{
+        visibility:hidden;
+    }
+
+    .future .section img{
+        width:48px;height:48px;
+    }
+
+    .future .section .weekday {
+        display: inline;
+    }
+
+    .soso_SmartPop{
+        width:341px;
+    }
+
+    .weather .noclose .close{
+        visibility:hidden;
+    }
+
+    .weather .noadd #addTabLi{
+        visibility:hidden;
+    }
+
+    .soso_SmartPop { left: 95px; }
+
+</style>
+<script>var pls=new Date();</script>
+</head>
+
+<body>
+
+    <div  id="pageMask"></div>
+    <div id="cityDiv" class='nodisplay'>
+        <iframe src="" id="cityFrame" scrolling="no" frameborder="0" name="cityFrame"></iframe>
+    </div>
+    <div id="loginDiv" class='nodisplay'>
+        <iframe src="" id="loginFrame" scrolling="no" frameborder="0" name="cityFrame"></iframe>
+    </div>
+    <div class="topWrap clearfix">
+        <div class="fl">
+            <a target='_blank' st_get='dh.wea.calendar' href="http://www.soso.com/q?cid=dh.01.calendar&w=%BB%C6%C0%FA" id='date_of_today'></a>
+            <a target='_blank' st_get='dh.wea.time' href="http://www.soso.com/q?w=%B1%B1%BE%A9%CA%B1%BC%E4&cid=dh.01.time" id='real_time'></a>
+        </div>
+        <div class="fr">
+            <div class="operWrap">
+                <a st_get='dh.wea.home' id="setHome" href="#" class="setIndex">设为主页</a>
+                <!--
+                <a class="addShortcut" href="/hao.qq.com_install.exe" st_get="dh.11.shortcut" target='_self'>添加到桌面</a>
+                -->
+            </div>
+            <div class="loginWrap">
+                <span class="line"></span>
+                <a target='_blank' st_get='dh.wea.feedback' href="http://support.qq.com/write.shtml?fid=542">反馈建议</a>
+                <span class="line"></span>
+                <div id='userInfoWrap'>
+                    <div class="userNav" id="userNavDiv">
+                        <a id="userNick" href="#" class="userName openCon"></a>
+                        <ul id="qqServiceList" class="qqServiceList">
+                            <li><a target='_blank' href="http://soso.qq.com/q?bid=201">我的搜搜</a></li>
+                            <li><a target='_blank' href="http://mail.qq.com/cgi-bin/login?lc=zh_CN&vm=pt&Fun=clientread">邮箱</a></li>
+                            <li><a target='_blank' href="http://qzone.qq.com">空间</a></li>
+                            <li><a target='_blank' href="http://vip.qq.com">QQ会员</a></li>
+                            <li><a target='_blank' href="http://www.pengyou.com/">QQ朋友</a></li>
+                        </ul>
+                    </div>
+                    <span class="line"></span>
+                    <a target='_blank' id="loginGolds" class="goldCoin" href="http://soso.qq.com/q?bid=303&cid=dh.my.coin&ch=dh.my.coin&channel=naved">金币(<em id="faxinGoldNum"></em>)</a>
+                    <span class="line"></span>
+                    <a id="logoutBtn" class="logout"  onclick='return false;' target='_self' href="javascript:void(0);">退出</a>			
+                </div>
+            </div>
+            <div class='unloginWrap'>
+                <a st_get='dh.wea.login' id="loginBtn" class="logout" onclick='return false;' target='_self' href="javascript:void(0);">登录</a>			
+            </div>
+            <div id="faxinTips">
+                <div class="tip" id="tipLogin">
+                    <p id="tipGolds">您已经获得20个金币！</p>
+                    <p>点击<a href="http://soso.qq.com/q?bid=303&channel=naved" target="blank">查看详情！</a></p>
+                    <span class="arrow"></span><span class="close" id="tipLoginClose"></span></div>
+                <div class="tip" id="tipNoLogin">
+                    <p>您已经获得金币奖励！</p>
+                    <p>请登录领取</p>
+                    <span class="arrow"></span><span class="close" id="tipNoLoginClose"></span></div>
+                <div class="tip" id="tipErrQQ">
+                    <p>请用<span id="realQQ"></span>QQ号登录</p>
+                    <p>获得金币，详情<a href="http://soso.qq.com/q?bid=303" target="blank">查看这里</a></p>
+                    <span class="arrow"></span><span class="close" id="tipErrQQClose"></span></div>
+            </div>
+        </div>
+    </div>
+    <div id="page">
+        <div class="headWrap">		
+            <div class="header clearfix">
+                <div class="logo"><a href="/?cid=dh.wea.home" st_get='dh.wea.logo'><img src="images/newlogo.png" alt="" /></a></div>
+                <div class="searchWrap2">
+                    <form action="http://www.youdao.com/search" method="get" id='sosoForm' target='_blank'>
+                        <div class="searchInputWrap clearfix">
+
+                            <input class="searchInput" name="q" type="text" id='soso_input' autocomplete='off'/>
+                            <input type="hidden" name="keyfrom" value="dh.win7000" />
+                            <input type="hidden" name="vendor" value="dh.win7000_3523" />
+                            <input type="hidden" name="ue" value="gb2312" />
+                            <a id='searchBtn' class="searchBtn" href="javascript:;" id='sosoSearchBtn'>搜索</a>
+                        </div>
+                        <div class="keywordsWrap">
+                            <ul class="keywordsList" id='keywordsList' st_get_group='dh.wea.hotkey'>
+                                <li><a href="javascript:;">天马流星拳</a><a href="javascript:;">庐山升龙霸</a><a href="javascript:;">九阴真经</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="subNav"><a href="/?cid=dh.wea.home" st_get='dh.wea.back2home'>QQ网址导航首页</a><span class="arrow">&gt;</span><strong>天气查询</strong></div>
+        <div class="weather clearfix">
+            <div class="subContent">
+                <div class="result">
+                    <ul class="tabs hidden" id='cityTab'>
+                        <!--
+                        <li class="current"><a href="javascript:;">北京</a><span class="close"></span></li>
+                        <li><a href="javascript:;">呼和浩特</a><span class="close"></span></li>
+                        -->
+                        <li id='addTabLi'><a class="add" href="javascript:;" id='addTabBtn'></a></li>
+                    </ul>
+                    <div class="panel">
+                        <div class="today hidden" id='todayArea'>
+                            <div class="info">
+                                <div class="top">
+                                    <span class="title">今天<span class="date" id='date0'></span></span>
+                                    <span class="r"></span>
+                                </div>
+                                <div class="realTime">
+                                    <span class="tem" id='temperature'></span>
+                                    <span class="tip">实时气温</span>
+                                </div>
+                                <div class="day">
+                                    <span class="title">白天</span>
+                                    <img id='bwea_img' class="icon" src="" alt="" />
+                                    <ul>
+                                        <li id='bwea'>晴</li>
+                                        <li>高温 <em class="warm" id='tmax'>14°C</em></li>
+                                        <li id='bwd'>北风 1-3级</li>
+                                    </ul>
+                                </div>
+                                <div class="night">
+                                    <span class="title">夜间</span>
+                                    <img id='ewea_img' class="icon" src="" alt="" />
+                                    <ul>
+                                        <li id='ewea'>多云</li>
+                                        <li>低温 <em class="cold" id='tmin'>-4°C</em></li>
+                                        <li id='ewd'>无持续风向 微风</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <ul class="clearfix" id='zhishuArea'>
+                                    <li class="d1">
+                                    <p class="p1">穿衣指数：<span></span></p>
+                                    <p class="p2 nodisplay"><span></span></p>
+                                    </li>
+                                    <li class="d2">
+                                    <p class="p1">空气污染指数：<span></span></p>
+                                    <p class="p2 nodisplay"><span></span></p>
+                                    </li>
+                                    <li class="d3">
+                                    <p class="p1">舒适度指数：<span></span></p>
+                                    <p class="p2 nodisplay"><span></span></p>
+                                    </li>
+                                    <li class="d4">
+                                    <p class="p1">晨练指数：<span></span></p>
+                                    <p class="p2 nodisplay"><span></span></p>
+                                    </li>
+                                    <li class="d5">
+                                    <p class="p1">感冒指数：<span></span></p>
+                                    <p class="p2 nodisplay"><span></span></p>
+                                    </li>
+                                    <li class="d6">
+                                    <p class="p1">逛街指数：<span></span></p>
+                                    <p class="p2 nodisplay"><span></span></p>
+                                    </li>
+                                    <li class="d7">
+                                    <p class="p1">洗车指数：<span></span></p>
+                                    <p class="p2 nodisplay"><span></span></p>
+                                    </li>
+                                    <li class="d8">
+                                    <p class="p1">紫外线指数：<span></span></p>
+                                    <p class="p2 nodisplay"><span></span></p>
+                                    </li>
+                                </ul>
+                                <a id='zhishuFolder' class="opt unfold" href="javascript:;"></a>
+                            </div>
+                        </div>
+                        <div class="future hidden" id='futureArea'>
+                            <div class="section">
+                                <span class="title"><span class='weekday'>明天</span><span class="date" id='date1'>（1月5日）</span></span>
+                                <div class="icon"><img src="images/wea2/s_a0.jpg" alt="" /><img src="images/wea2/s_b1.jpg" alt="" /></div>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="section">
+                                <span class="title"><span class='weekday'>后天</span><span class="date" id='date2'></span></span>
+                                <div class="icon"><img src="images/wea2/s_a0.jpg" alt="" /><img src="images/wea2/s_b1.jpg" alt="" /></div>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="section">
+                                <span class="title"><span id='weekday0' class='weekday'>周日</span><span class="date" id='date3'>（1月7日）</span></span>
+                                <div class="icon"><img src="images/wea2/s_a0.jpg" alt="" /><img src="images/wea2/s_b1.jpg" alt="" /></div>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="section">
+                                <span class="title"><span id='weekday1' class='weekday'>周一</span><span class="date" id='date4'>（1月8日）</span></span>
+                                <div class="icon"><img src="images/wea2/s_a0.jpg" alt="" /><img src="images/wea2/s_b1.jpg" alt="" /></div>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="weaLinks">
+                    <div class="innerWrap" st_get_group='dh.wea.site'>
+                        <ul>
+                            <li><a target="_blank" href="http://www.weather.com.cn/"> 中国天气网  </a></li>
+                            <li><a target="_blank" href="http://www.nmc.gov.cn/"> 中央气象台  </a></li>
+                            <li><a target="_blank" href="http://weather.news.qq.com/"> 腾讯天气    </a></li>
+                            <li><a target="_blank" href="http://www.nmc.gov.cn/publish/satellite/fy2.htm">卫星云图   </a></li>
+                            <li><a target="_blank" href="http://www.cma.gov.cn/"> 中国气象局  </a></li>
+                            <li><a target="_blank" href="http://www.cea.gov.cn/manage/html/8a8587881632fa5c0116674a018300cf/index.html ">中国地震局  </a></li>
+                            <li><a target="_blank" href="http://www.ceic.ac.cn/"> 中国地震网  </a></li>
+                            <li><a target="_blank" href="http://www.typhoon.gov.cn/">中国台风网  </a></li>
+                            <li><a target="_blank" href="http://www.worldweather.cn/"> 世界天气预报</a></li>
+                       </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="jryj section">
+                    <h2>今日宜忌</h2>
+                    <p><span id='lunarYear'> </span><span id='lunarDate'></span><span> </span></p>
+                    <ul>
+                        <li><span class="yi">宜</span><span id='goodThing'></span></li>
+                        <li><span class="ji">忌</span><span id='badThing'></span></li>
+                        <li><span class="chong">冲</span><span id='chongThing'></span></li>
+                    </ul>
+                </div>
+                <div class="yuncheng section">
+                    <h2>今日运程</h2>
+                    <div class="xz">
+                        <span class="current selected" id='currentStar' st_get='dh.wea.staropen'>水瓶座</span>
+                        <div class="xzList nodisplay" id='selectStarDialog'>
+                            <ul>
+                                <li><a href="javascript:;">白羊座</a></li>
+                                <li><a href="javascript:;">金牛座</a></li>
+                                <li><a href="javascript:;">双子座</a></li>
+                                <li><a href="javascript:;">巨蟹座</a></li>
+                                <li><a href="javascript:;">狮子座</a></li>
+                                <li><a href="javascript:;">处女座</a></li>
+                                <li><a href="javascript:;">天秤座</a></li>
+                                <li><a href="javascript:;">天蝎座</a></li>
+                                <li><a href="javascript:;">射手座</a></li>
+                                <li><a href="javascript:;">摩羯座</a></li>
+                                <li><a href="javascript:;">水瓶座</a></li>
+                                <li><a href="javascript:;">双鱼座</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="p1"><span class="l">总运势：<span id='starLevel' class="star"></span></span><span class="r"><a href="javascript:;" id='tomorrowStar' st_get='dh.wea.startmro'>明日</a><a st_get='dh.wea.starweek' href="javascript:;" id='thisWeekStar'>本周</a><a href="javascript:;" id='thisMonthStar' st_get='dh.wea.starmonth'>本月</a></span></p>
+                    <p class="p2"><span>幸运数字：<span id='starLuckyNum'></span></span><span>幸运颜色：<em id='starLuckyColor'></em></span></p>
+                    <p class="p3"><span id='starGaishu'></span><a class="more" href="javascript:;" id='starMore' st_get='dh.wea.starmore'>详情&gt;&gt;</a></p>
+                </div>
+                <div class="hotSearch section">
+                    <h2>搜搜热榜</h2>
+                    <ul id='sosoTopList' st_get_group='dh.wea.news'>
+                        <li><span><em class="top3">1</em></span><a href="javascript:;">巴菲特上春晚</a></li>
+                        <li><span><em class="top3">2</em></span><a href="javascript:;">双流机场UFO</a></li>
+                        <li><span><em class="top3">3</em></span><a href="javascript:;">2012跨年异兆</a></li>
+                        <li><span>4</span><a href="javascript:;">广西官员床照</a></li>
+                        <li><span>5</span><a href="javascript:;">新浪密码漏洞</a></li>
+                        <li><span>6</span><a href="javascript:;">幼儿园收费办法</a></li>
+                        <li><span>7</span><a href="javascript:;">欧弟富豪女友</a></li>
+                        <li><span>8</span><a href="javascript:;">船震门女主角</a></li>
+                        <li><span>9</span><a href="javascript:;">21岁嫩模车祸</a></li>
+                        <li><span>10</span><a href="javascript:;">乐基儿流产</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>
+            <a id="setHomeLink" target="_self" href="javascript:void(0);">设为主页</a> | <a href="https://tg.qq.com/">搜索推广</a> | <a target='_blank' href="book/">反馈建议</a> | <a target="_blank"  target='_blank' href="http://www.qq.com/contract.shtml">服务条款</a> | <a  target='_blank' href="http://www.tencent.com/zh-cn/index.shtml">关于腾讯</a>
+            <p class="copyright">&copy;2012 Tencent粤B2-20090059</p>
+        </div>
+    </div>
+
+    <script language='javascript' src='/script/tianqi.js'></script>
+
+    <script language='javascript'>
+
+        var g_cookie = new Cookie;
+        var g_pagemask = new PageMask($('pageMask'));
+        var g_select_star = g_cookie.get('starsel');
+
+
+        var weather = new Weather;
+        var g_tab = new Tab;
+        var g_citylist = loadTabList();
+        weather.addEventListener('wea_data_ready',function(data){
+            _showWeather(data);
+        });
+
+        g_tab.addEventListener('click_tab',function(para){
+            weather.getWeather( g_tab.getTabLabel(para.index) );
+            saveSelectedTab(para.index);
+            st_get(this,'dh.wea.citytap',0);
+        });
+
+        g_tab.addEventListener('close_tab',function(para){
+            st_get(this,'dh.wea.cityclose',0);
+            if( para.error && para.error == 1){
+                alert('至少保留一个城市');
+                return;
+            }
+            saveTabList( g_tab.getTabList() );
+        });
+
+        g_tab.addEventListener('new_tab',function(para){
+            st_get(this,'dh.wea.cityadd',0);
+            if( g_tab.getTabNumber() >= 3 ){
+                alert('最多只能选三个');
+                return false;
+            }
+            g_pagemask.open();
+            openSelectCityDialog(100,200);
+        });
+
+
+        if( g_citylist.length == 0){
+            var wea_init_cb = function(data){
+                weather.removeEventListener('wea_data_ready',wea_init_cb);
+                g_citylist.push(data.future.name);
+                g_tab.init(g_citylist);
+                var candiates = ['北京','深圳'];
+                g_tab.addTab(candiates[data.future.name==candiates[0]?1:0]);
+                g_tab.setSelect(0);
+                saveTabList(g_tab.getTabList());
+            }
+            weather.addEventListener('wea_data_ready',wea_init_cb);
+            weather.getWeather();
+        }
+        else{
+            g_tab.init(g_citylist);
+            g_tab.setSelect(loadSelectedTabIndex());
+        }
+
+        function saveTabList(list){
+            if(!list)return;
+            g_cookie.set('citylist',list.join('|'));
+        }
+
+        function loadTabList(){
+            var list = g_cookie.get('citylist');
+            if( !list ) {return []};
+            return list.split('|');
+        }
+
+        function saveSelectedTab(index){
+            g_cookie.set('cityindex',index);
+        }
+
+        function loadSelectedTabIndex(){
+            var cityindex =  g_cookie.get('cityindex');
+            if( !cityindex ) return 0;
+            return parseInt(cityindex);
+        }
+
+        function getWeather(city){
+            //changeCity.html调用的接口。
+            g_tab.addTab(city);
+            g_tab.setSelect(-1);
+            saveTabList( g_tab.getTabList() );
+        }
+
+        var cityFrame = $('cityFrame');
+        var cityDiv = $('cityDiv');
+
+        function closeCityIframe(){
+            addClass(cityDiv,'nodisplay');
+            g_pagemask.close();
+        }
+
+        function openSelectCityDialog(top,left){
+            cityFrame.src = '/changeCity.html';
+            cityFrame.style.width = "550px";
+            cityFrame.style.height = "400px";
+            cityDiv.style.position = 'absolute';
+            cityDiv.style.zIndex = 100;
+            cityDiv.style.top = (document.documentElement.clientHeight - 400) / 2 + "px";
+            cityDiv.style.left = (document.documentElement.clientWidth - 550) / 2 + "px";
+            removeClass(cityDiv,'nodisplay');
+        }
+
+        function updateKey(data){
+            if( !data || !data.keywords )return;
+            data = data.keywords;
+            var as = $('keywordsList').getElementsByTagName('a');
+            for(var i=0;i<3&&i<as.length;++i){
+                as[i].innerHTML = data[i].name.truncate_cn(10);
+            }
+        }
+
+        function setHomeEventHandler(e) {
+            setHomepage(location.href);
+            stopBubble(e);
+            return false;
+        }
+
+        function afterLogin(user) {
+
+            var tipNoLogin = $("tipNoLogin");
+            var tipErrQQ = $("tipErrQQ");
+            var tipLogin = $("tipLogin");
+            $("tipNoLoginClose").onclick = function() {
+                tipNoLogin.style.display = 'none';
+                return false;
+            };
+            $("tipLoginClose").onclick = function() {
+                tipLogin.style.display = 'none';
+                return false;
+            };
+
+            function afterGetGold(data) {
+                $('faxinGoldNum').innerHTML = data.golds;
+                $('loginGolds').style.display = 'block';
+            }
+
+            function afterFinishTask(data) {
+                var gold = data.gold;
+                if (gold > 0) {
+                    $("tipGolds").innerHTML = '您已经获得金币奖励！';
+                    tipLogin.style.display = 'block';
+                    st_get(this, 'u01.hao.' + gold, 0);
+                }
+            }
+
+            function faxinNoLogin() {
+            //	if (g_Get['uin']) {
+            //$('noLoginQQ').innerHTML = g_Get['uin'];
+            tipNoLogin.style.display = 'block';
+            //	}
+            }
+
+            if (user.isLogin()) {
+            $('userNick').innerHTML = user.nick.escapeHTML().truncate_cn(20);
+            $('userInfoWrap').style.display = 'block';
+            //$('userNick').style.display = 'block';
+            //			$('logoutBtn').style.display = 'block';
+            //			$('qqServiceList').style.display = 'block';
+            $('loginBtn').style.display = 'none';
+
+            addListener($('userNavDiv'), 'mouseover', function(e) {
+            $('qqServiceList').style.visibility = 'visible';
+            });
+            addListener($('userNavDiv'), 'mouseout', function(e) {
+            $('qqServiceList').style.visibility = 'hidden';
+            });
+            }
+
+            if (typeof av === 'function') {
+            var avObj = av(afterGetGold, afterFinishTask);
+            if (avObj) {
+            user.isLogin() ? avObj.login() : faxinNoLogin();
+            }
+            }
+
+            }
+
+        if ($('zhishuFolder')) {
+            $('zhishuFolder').onclick = function() {
+                var ps = $('zhishuArea').getElementsByTagName('p');
+                var is_folding = false;
+                if (haveClass(this, 'unfold')) {
+                    removeClass(this, 'unfold');
+                    addClass(this, 'fold');
+                    st_get(this,'dh.wea.infoopen',0);
+                    } else {
+                    removeClass(this, 'fold');
+                    addClass(this, 'unfold');
+                    is_folding = true;
+                    st_get(this,'dh.wea.infoclose',0);
+                }
+                for (var i = 0; i < ps.length; ++i) {
+                    if (haveClass(ps[i], 'p2')) {
+                        if(is_folding){  
+                            addClass(ps[i], 'nodisplay')  
+                        }
+                        else{
+                            removeClass(ps[i], 'nodisplay')
+                        }
+                    }
+                }
+            }
+        }
+
+        $('tomorrowStar').onclick = function(){
+            window.open('http://www.soso.com/q?ie=utf-8&w='+encodeURIComponent($('currentStar').innerHTML+'明日'));
+        }
+
+        $('thisWeekStar').onclick = function(){
+            window.open('http://www.soso.com/q?ie=utf-8&w='+encodeURIComponent($('currentStar').innerHTML+'本周'));
+        }
+
+        $('thisMonthStar').onclick = function(){
+            window.open('http://www.soso.com/q?ie=utf-8&w='+encodeURIComponent($('currentStar').innerHTML+'本月'));
+        }
+
+        $('starMore').onclick = function(){
+            window.open('http://www.soso.com/q?ie=utf-8&w='+encodeURIComponent($('currentStar').innerHTML));
+        }
+
+        $('selectStarDialog').onclick = function(e){
+            var t = getEventTarget(e);
+            if( t.tagName == 'A' ){
+                changeStar(t.innerHTML);
+                }else{
+                stopBubble(e);
+            }
+        }
+
+        $('currentStar').onclick = function(e){
+            removeClass($('selectStarDialog'),'nodisplay');
+            stopBubble(e);
+        }
+
+        document.body.onclick = function(){
+            addClass($('selectStarDialog'),'nodisplay');
+        }
+
+
+        $('keywordsList').onclick =  $('sosoTopList').onclick = function(e){
+            var t = getEventTarget(e);
+            if( t.tagName == 'A' ){
+                window.open('http://www.youdao.com/search?keyfrom=dh.win7000&vendor=dh.win7000_3523&ue=utf8&q='+encodeURIComponent(t.innerHTML));
+            }
+        }
+
+
+        var g_SourcePara = {cid:'dh',unc:''};
+        installHint($('soso_input'),'请输入关键词');
+        updateDate();
+        showDate();
+
+        $('searchBtn').onclick = function(){
+            if( haveClass($('soso_input'),'onfocus') ){
+                $('sosoForm').submit();
+                }else{
+                $('soso_input').focus();
+            }
+        }
+
+        $('setHomeLink') && ($('setHomeLink').onclick = setHomeEventHandler);
+        $('setHome') && ($('setHome').onclick = setHomeEventHandler);
+
+        $('loginBtn').onclick = function(e) {
+            stopBubble(e);
+            new Ptlogin2().open($('loginFrame'), $('loginDiv'), new PageMask($('pageMask')));
+            return false;
+        }
+        $('logoutBtn').onclick = function(e) {
+            stopBubble(e);
+            user.logout(g_cookie);
+            return false;
+        }
+
+            var user = new User();
+            window.g_user = user;
+            user.login(afterLogin);
+
+            new SoSo_SmartBox($('soso_input'),function(){
+            var oldCid = $('cid').value;
+            $('cid').value = 'dh.wea.smartbox';
+            $('sosoForm').submit();
+            $('cid').value = oldCid;
+            },function(){return true;});
+
+            installStat();
+
+        </script>
+
+        <script language='javascript' src='/script/everydayKeyData.js'></script>
+        <script language="javascript" src="http://cache.soso.com/js/an-app.js"></script>
+<script language="javascript"> if(typeof(pgvMain) == 'function')pgvMain(); </script>
+<script>
+    if (typeof(__sosostat) == 'object') {
+        __sosostat.sc = "daoh";
+        try {
+            __sosostat.run();
+        } catch(e) {}
+    }
+</script>
+        <div style='display:none;'>
+            <script type="text/javascript" src="script/tongji.js"></script>
+        </div>
+    </body>
+</html>

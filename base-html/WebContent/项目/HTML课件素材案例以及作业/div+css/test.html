@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>深入理解CSS盒子模型</title>
+		
+		<style>
+		
+		#continer {width:1000px;height:850px;background-color:#00ff00;margin:auto;padding-top:5px;}
+		#head {width:950px;height:80px;background-color:#00ab12;margin:10px 25px;}
+		#menu {width:950px;height:60px;background-color:#00ee12;margin:10px 25px;padding-top:8px;padding-left:-5px;}
+		
+		#nav{width:950px;}
+    #nav ul {min-width:880px;}
+    #nav li { float:left; list-style-type:none;}
+    #nav li a { color:#ffffff;
+                text-decoration:none; 
+                padding-top:4px; 
+                width:90px;
+                height:22px; 
+                text-align:center;
+                background:#FF0000;
+                margin-left:2px;
+                font-size:12px;
+                display:block;}
+    #nav li a:hover { background-color:#000000; color:#ffffff; font-size:12px;}
+		
+		
+		#content {width:700px;height:600px;background-color:blue;float:left;margin-left:25px;}
+		#sidebar {width:250px;height:600px;background-color:red;float:left;}
+		
+		#foot {width:950;height:60px;background-color:black;clear: both; margin-left:25px;}
+		
+		
+		
+		</style>
+	</head>
+<body>
+	<div id="continer">
+			<div id="head">head</div>
+		  <div id="menu">
+		  	<ul id="nav">
+			    <li><a href="/index.asp">主页</a></li>
+			    <li><a href="/Sort/List_4.html">DIV+CSS教程</a></li>
+			    <li><a href="/Sort/List_5.html">常用代码</a></li>
+			    <li><a href="/Sort/List_6.html">水晶图标</a></li>
+			    <li><a href="/Sort/List_7.html">幻灯图片</a></li>
+			    <li><a href="/Sort/List_10.html">软件下载</a></li>
+			    <li><a href="/css2/css.html">CSS2.0实用手册</a></li>
+			  </ul>
+		  	
+		  </div>
+		  
+  		<div id="content">content</div>
+  		<div id="sidebar">sidebar</div>
+		  
+		  <div id="foot">foot</div>
+	</div>
+
+</body>
+</html>

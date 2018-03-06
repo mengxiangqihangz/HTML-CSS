@@ -1,0 +1,168 @@
+@charset "utf-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;}
+ol,ul{list-style:none;}img{border:0;}table{border-collapse:collapse;border-spacing:0;}
+em,strong,th{ font-style: normal;}:focus{outline:none;}input,select {outline:none;}
+a{color:#333;text-decoration:none;}
+a:hover{text-decoration:underline;}
+body {font:12px Arial,Helvetica,sans-serif;color:#333;}
+.clearfix:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix {zoom:1;}
+.fl{float:left;}.fr{float:right;}
+/*头部登陆通栏*/
+.topWrap{border-bottom:1px solid #d9d9d9;min-width:990px;height:28px;background: url(../images/bg_top.png) repeat-x;}
+.topWrapcont{width:990px;margin:0 auto;position:relative;z-index: 999; }
+.topWrap .innerWrap {width:990px;height: 28px;line-height:28px;*line-height:31px;line-height:32px\0; overflow:hidden;}
+.topWrap a{float:left;padding:0 7px;color: #404040;overflow:hidden;height:28px;}
+.topWrap a:hover{background-color:#68b2eb;text-decoration:none;color:#fff;padding:0 6px;border-width: 0 1px 1px; border-style: solid; border-color: #5ea1e0; margin-bottom: -1px; position: relative; }
+.topWrap .line {width:1px;background: #d9d9d9;height:17px;float:left;margin-top:6px;}
+.topWrap .setIndex span, .topWrap .gold span{float:left;}
+.topWrap .setIndex span.icon{margin-top:6px;}
+.topWrap .setIndex .icon, .topWrap .gold .icon{background: url(../images/5icon.png) no-repeat 0 0; margin-right: 5px; }
+.topWrap .setIndex .icon{width:17px;height:17px;background-position: -68px 0; }
+.topWrap .setIndex:hover .icon{background-position: -68px -17px; }
+.topWrap .user .avatar, .topWrap .user .name{vertical-align: middle;display:inline-block; }
+.topWrap .user .avatar {margin-right:5px;width:21px;height:21px;}
+.topWrap .qZone, .topWrap .twitter, .topWrap .mail {height: 28px;}
+.qZone .icon, .twitter .icon, .mail .icon {display:inline-block;background: url(../images/5icon.png) no-repeat; position: relative; vertical-align: top; }
+.qZone .icon {width:17px;height:17px;background-position:0 0;margin-top: 5px;}
+.qZone:hover .icon{background-position:0 -17px;}
+.twitter .icon{width:15px;height:16px;background-position:-18px 0;margin-top:6px;}
+.twitter:hover .icon{background-position:-18px -17px;}
+.mail .icon{width:17px;height:15px;background-position:-34px 0px; margin-top: 8px;}
+.mail:hover .icon{background-position:-34px -17px; }
+.topWrap .gold .icon{width:15px; height: 17px; background-position:-52px 1px;}
+.topWrap .gold:hover .icon{background-position:-52px -16px;}
+.topWrap .gold .num {vertical-align:baseline;zoom: 1;}
+.topWrap .icon .tip {width:8px;height:8px;top: -2px;background: url(../images/tip.png) no-repeat; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/tip.png"); _background: none; position: absolute; right: -4px; }
+.innerWrap .fr .user img{float:left;margin-top:4px;}
+.qZone .num, .twitter .num, .mail .num { margin: 0 0 0 5px; float:left;}
+.topWrap a span{cursor: pointer;float:left;}
+.topWrap a span.icon{margin-top:6px;}
+.topWrap .login {float:right;position:relative;}
+.topWrap .login .icon{width:17px;height:17px;background:url(../images/sprite.png) no-repeat 0 -127px; margin-right: 5px; }
+.login a:hover .icon{background-position: 0 -154px; }
+.login a span{float:left;}
+.topWrap .loginTip{width:241px;height:79px;background:url(../images/loginTip.png) no-repeat; position: absolute; right: 0; top: 28px; border: 1px solid #cac2b1; box-shadow: 0 1px 0 #ececec; z-index:1000;}
+.topWrap .loginTip .arrow{width:9px;height:6px;background:url(../images/sprite.png) no-repeat right -127px; position: absolute; right: 38px; top: -6px; overflow: hidden;}
+.topWrap .loginTip .close{width:10px;height:10px;background:url(../images/sprite.png) no-repeat right -142px; position: absolute; right: 5px; top: 4px; overflow: hidden;}
+.topWrap .loginTip a{float:none;padding:0;color: #ac9c79;}
+.topWrap .loginTip a:hover{background-color:transparent;text-decoration:underline;color: #ac9c79; padding: 0; border: none; margin: 0; position: absolute;}
+.topWrap .loginTip .link{position:absolute; right: 6px;height:18px; bottom: 0; line-height: normal; }
+/*导航通栏*/
+.header{width:990px;margin:0 auto;height:85px;}
+.haoLogo{float:left;margin:19px 7px 0 10px;}
+.qureyLogo{float:left;margin-top:24px;width:82px;height:38px;text-indent:-9999px;background:url(../images/querytoolbg.png) no-repeat;}
+.searchBox{float:left;position:relative;margin:27px 0 0 41px;display:inline;z-index:103;}
+.searchInput{float:left;width:356px;height:22px;line-height:22px;padding:5px 7px;font-size:14px;color: #999;border:none;background:url(../images/searchBox448.png) no-repeat;}
+.searchBtn {float:left;width:78px;height:32px;text-indent:-9999px;background: url(../images/searchBox448.png) no-repeat -370px 0;}
+.searchBtn:hover{background-position:-370px -32px;}
+.onfocus{color:#000;background-position: 0 -32px;}
+.navBox{width:990px;margin:0 auto;height:40px;position:relative;font-size:14px;background:#3598e4;}
+.navBox .btm{width:3px;height:40px;position:absolute;top:0;right:0;background:url(../images/querytoolbg.png) no-repeat -109px 0;}
+.navBox a{color:#fff;}
+.navBox a:hover{color:#fff;}
+.navBox .nav{float:left;}
+.navBox .nav li{float:left;font-weight:bold;}
+.navBox .nav li a{float:left;padding:0 23px;line-height:40px;}
+.navBox .nav li a:hover{background:#63afea;text-decoration:none;}
+.navBox .nav li.current{background:#2271be;}
+.navBox .nav li.current a:hover{background:#2271be;cursor:default;}
+.navBox .nav li a.first{background:url(../images/querytoolbg.png) no-repeat 0 -137px;}
+.navBox .nav li a.first:hover{background:url(../images/querytoolbg.png) no-repeat 0 -179px #63afea;}
+.navBox .nav li.current a.first,.navBox .nav li.current a.first:hover{background:url(../images/querytoolbg.png) no-repeat 0 -220px #2271be;}
+.navBox .meUsed{float:right;margin:5px 7px 0 0;display:inline;z-index:100;position:relative;}
+.navBox .meUsed a{display:block;width:103px;height:30px;line-height:30px;padding-left:9px;background:url(../images/querytoolbg.png) no-repeat 0 -41px;}
+.navBox .meUsed a:hover{text-decoration:none;background-position:0 -71px;}
+.navBox .meUsecur a,.navBox .meUsecur a:hover{height:35px;color:#3598e4;background-position:0 -101px;}
+.meUsedpop1{position:absolute;top:40px;right:7px;width:110px;border:1px solid #0e7acc;border-top:0;padding-bottom:8px;text-align:center;color:#999;font-size:12px;background:#fff;}
+.meUsedpop2{position:absolute;top:40px;right:7px;width:183px;color:#333;border:1px solid #0e7acc;margin-top:-1px;z-index:10; padding-bottom:6px;color:#999;background:#fff;}
+.meUsedpop2 a,.meUsedpop2 a:hover{color:#333;}
+.meUsedpop2 ul li{height:32px;line-height:32px;padding:0 10px 0 12px;overflow:hidden;}
+.meUsedpop2 ul li span{float:left;}
+.meUsedpop2 ul li em{float:right;width:12px;height:12px;text-indent:-9999px;display:none;margin-top:10px;background:url(../images/querytoolbg.png) no-repeat -89px 0;}
+.meUsedpop2 ul li em a{width:12px;height:12px;display:block;}
+.meUsedpop2 ul li.current{background:#e7f3ff;}
+.meUsedpop2 ul li.current em{display:block;}
+.meUsedpop2 .clearBtn{padding:7px 10px 0 0;border-top:1px dashed #9fc9f4;font-size:12px;text-align:right;}
+.meUsedpop2 .clearBtn a{color:#005599;}
+.main{width:990px;margin:0 auto;font-size:14px;padding:8px 0 15px;min-height:400px;height:auto;}
+*html .main{height:400px;}                         
+.modBox{width:990px;border-bottom:1px dashed #dedede;overflow:hidden;}
+.modBox a{color:#005599;}
+.modBox h2{float:left;width:87px;padding:18px 0 0 22px;font-size:14px;line-height:22px;}
+.modBox ul{float:left;width:881px;margin:7px 0;}
+.modBox ul li{width:220px;float:left;padding:5px 0 5px 0;line-height:22px;}
+.modBox ul li a{width:204px;border:1px solid #fff;display:block;padding:5px 0 5px 9px;overflow:hidden;}
+.modBox ul li img{float:left;margin-right:6px;}
+.modBox ul li a:hover{border:1px solid #d2e4f6;background:#e7f3ff;}
+.modBox.pics h2{padding:23px 0 0 22px;}
+.modBox.pics ul{margin:5px 0;}
+.modBox.pics ul li{padding:8px 0 8px 0;}
+.modBox.pics ul li a{padding:9px 0 9px 9px;}
+.modBox.txt ul{padding:10px 0 12px 109px;}
+.modBox.nobg{border-bottom:0;}
+.footer {line-height:22px;padding:12px 0;text-align:center;color: #858585;}
+.footer a{margin:0 10px;color: #494949;}
+.footer .copyright{color:#666;}
+.soso_SmartPop{border:1px solid #74b7fb;border-top:0;width:369px;background:#fff;z-index:102;position:absolute;left:0;top:32px;}
+.soso_SmartPop div div{height:26px;line-height:26px;padding-left:5px;font-size:14px;text-decoration:none;}
+.soso_SmartPop div.mouseout {background:#fff;}
+.soso_SmartPop div.mouseover {background:#D8ECFF;cursor:pointer;}
+
+/** 页面顶部样式 */
+.topWrap {font:12px Arial,Helvetica,sans-serif;color:#000;}
+.fl { float: left; }
+.fr { float: right; }
+.topWrap {height: 28px;background: url(../images/bg_top.png) repeat-x; border-bottom: 1px solid #d9d9d9; min-width: 990px; }
+.topWrapcont{width:990px;margin:0 auto;position:relative;z-index: 999; }
+.topWrap .innerWrap { width: 990px;height: 28px;line-height:28px;*line-height:31px;line-height:32px\0; overflow:hidden;}
+.topWrap a { float: left; padding: 0 7px; color: #404040;overflow:hidden;height:28px; }
+.topWrap a:hover { background-color: #68b2eb; text-decoration: none; color: #fff; padding: 0 6px; border-width: 0 1px 1px; border-style: solid; border-color: #5ea1e0; margin-bottom: -1px; position: relative; }
+.topWrap .line { width: 1px; background: #d9d9d9; height: 17px; float: left; margin-top: 6px; }
+.topWrap .setIndex span, .topWrap .gold span {float:left;}
+.topWrap .setIndex span.icon {margin-top:6px;}
+.topWrap .setIndex .icon, .topWrap .gold .icon { background: url(../images/5icon.png) no-repeat 0 0; margin-right: 5px; }
+.topWrap .setIndex .icon {width: 17px; height: 17px; background-position: -68px 0; }
+.topWrap .setIndex:hover .icon { background-position: -68px -17px; }
+.topWrap .user .avatar, .topWrap .user .name { vertical-align: middle; display: inline-block; }
+.topWrap .user .avatar { margin-right: 5px;width:21px;height:21px; }
+.topWrap .qZone, .topWrap .twitter, .topWrap .mail { height: 28px; }
+.qZone .icon, .twitter .icon, .mail .icon { display: inline-block; background: url(../images/5icon.png) no-repeat; position: relative; vertical-align: top; }
+.qZone .icon { width: 17px; height: 17px; background-position: 0 0; margin-top: 5px; }
+.qZone:hover .icon { background-position: 0 -17px; }
+.twitter .icon { width: 15px; height: 16px; background-position: -18px 0; margin-top: 6px; }
+.twitter:hover .icon { background-position: -18px -17px; }
+.mail .icon { width: 17px; height: 15px; background-position: -34px 0px; margin-top: 8px; }
+.mail:hover .icon { background-position: -34px -17px; }
+.topWrap .gold .icon { width: 15px; height: 17px; background-position: -52px 1px; }
+.topWrap .gold:hover .icon { background-position: -52px -16px; }
+.topWrap .gold .num { vertical-align: baseline; zoom: 1; }
+.topWrap .icon .tip { width: 8px; height: 8px; top: -2px;background: url(../images/tip.png) no-repeat; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/tip.png"); _background: none; position: absolute; right: -4px; }
+.innerWrap .fr .user img{float:left;margin-top:4px;}
+.qZone .num, .twitter .num, .mail .num { margin: 0 0 0 5px; float:left;}
+.topWrap a span { cursor: pointer;float:left;}
+.topWrap a span.icon{ margin-top:6px; }
+.topWrap .login { float: right; position: relative; }
+.topWrap .login .icon { width: 17px; height: 17px; background: url(../images/sprite.png) no-repeat 0 -127px; margin-right: 5px; }
+.login a:hover .icon { background-position: 0 -154px; }
+.login a span { float:left;}
+.topWrap .loginTip { width: 241px; height: 79px; background: url(../images/loginTip.png) no-repeat; position: absolute; right: 0; top: 28px; border: 1px solid #cac2b1; box-shadow: 0 1px 0 #ececec; z-index:1000;}
+.topWrap .loginTip .arrow { width: 9px; height: 6px; background: url(../images/sprite.png) no-repeat right -127px; position: absolute; right: 38px; top: -6px; overflow: hidden; }
+.topWrap .loginTip .close { width: 10px; height: 10px; background: url(../images/sprite.png) no-repeat right -142px; position: absolute; right: 5px; top: 4px; overflow: hidden; }
+.topWrap .loginTip a { float: none; padding: 0; color: #ac9c79; }
+.topWrap .loginTip a:hover { background-color: transparent; text-decoration: underline; color: #ac9c79; padding: 0; border: none; margin: 0; position: absolute; }
+.topWrap .loginTip .link { position: absolute; right: 6px;height:18px; bottom: 0; line-height: normal; }
+.msgTip { position: absolute; width: 90px; padding: 9px 0 0 10px; background: #fffae9; border: 1px solid #cac2b1; z-index:1000; color: #666;}
+.msgTip h3 { font-size: 12px; font-weight: normal; margin-bottom: 8px; }
+.msgTip li { margin-bottom: 6px; padding-left: 10px; }
+.msgTip .arrow { width: 9px; height: 6px; background: url(../images/sprite.png) no-repeat right -127px; overflow: hidden; position: absolute; left: 10px; top: -6px; }
+.operWrap, .loginWrap { float: left; }
+#userInfoWrap { display:none; position:relative; float:left; }
+.operWrap, .unloginWrap { float: left; }
+.userNav { float: left; position: relative; z-index: 10; }
+.topWrap .userName { background: url(../images/sprite.png) no-repeat right 12px; padding: 0 22px 0 10px; }
+.topWrap .userName:hover { background-position: right -12px; }
+.nodisplay{display:none;}
+.hidden{visibility:hidden;}
+.pageMask { position:absolute; display:none; z-index:1000; top:0; left:0; filter:alpha(opacity=50); opacity:0.5; background-color:#FFF; }
+.loginDiv { position:absolute; width:400px; height:330px; padding:0; z-index:1001; margin:0px; }

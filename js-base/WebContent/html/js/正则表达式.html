@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/* new RegExp("正则表达式","匹配模式"); */
+	var reg = new RegExp("a");
+	console.log(reg);
+	
+	/* 正则表单式的方法
+			test()*/
+	var str = "abac"
+	var flag = reg.test(str);
+	console.log(flag);
+	
+	/* 
+		匹配模式
+			i 忽略大小写
+			g 全局匹配
+	*/
+	reg = new RegExp("a","i");
+	str = "Abc";
+	flag = reg.test(str);
+	console.log(flag + "##");
+	
+	
+	/*
+		使用字面量来创建正则表达式
+			语法 var reg = /正则表达式/匹配模式
+	*/
+	reg = /a/i;
+	console.log(typeof reg);
+	console.log(reg.test(str));
+	
+	
+</script>
+</head>
+<body>
+	
+</body>
+</html>
