@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+window.onload = function(){
+	var checkedAllBtn = document.getElementById("checkedAllBtn");
+	var checkedNoBtn = document.getElementById("checkedNoBtn");
+	var checkedRevBtn = document.getElementById("checkedRevBtn");
+	var sendBtn = document.getElementById("sendBtn");
+	var checkAllBox = document.getElementById("checkAllBox");
+	
+	var checkbox = document.getElementsByName("item");
+	checkedAllBtn.onclick = function(){
+		for (var i = 0; i < checkbox.length; i++) {
+			checkbox[i].checked = true;
+		}
+	}
+	
+	checkedNoBtn.onclick = function(){
+		for (var i = 0; i < checkbox.length; i++) {
+			checkbox[i].checked = false;
+		}
+	}
+	
+	checkedRevBtn.onclick = function(){
+		for (var i = 0; i < checkbox.length; i++) {
+			if(checkbox[i].checked == true){
+				checkbox[i].checked = false;
+			}else{
+				checkbox[i].checked = true;
+			}
+		}
+	}
+	
+	checkAllBox.onclick = function(){
+		console.log(this);
+		/* if(checkAllBox.checked == true){
+			for (var i = 0; i < checkbox.length; i++) {
+				checkbox[i].checked = true;
+			}
+		}else{
+			for (var i = 0; i < checkbox.length; i++) {
+				checkbox[i].checked = false;
+			}
+		} */
+		/* for (var i = 0; i < checkbox.length; i++) {
+			checkbox[i].checked = checkAllBox.checked;
+		} */
+	}
+	
+}
+
+
+
+</script>
+
+
+
+</head>
+<body>
+	<form>
+		你爱好的运动是？<input type="checkbox" id="checkAllBox">全选/全不选<br>
+		<input type="checkbox" name="item" value="足球">足球
+		<input type="checkbox" name="item" value="篮球">篮球
+		<input type="checkbox" name="item" value="羽毛球">羽毛球
+		<input type="checkbox" name="item" value="乒乓球">乒乓球
+		<br>
+		<input type="button" id="checkedAllBtn" value="全选">
+		<input type="button" id="checkedNoBtn" value="全不选">
+		<input type="button" id="checkedRevBtn" value="反选">
+		<input type="button" id="sendBtn" value="提交">
+	</form>
+</body>
+</html>
