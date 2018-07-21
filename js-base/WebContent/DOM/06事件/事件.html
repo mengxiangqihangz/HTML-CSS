@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <script type="text/javascript">
+        /**
+         * 文档加载是自上而下加载，执行script时，btn并未生成，所以
+         */
+        // var btn = document.getElementById("btn");
+        // btn.onclick = function () {
+        //     alert("你点我干嘛！");
+        // }
+        window.onload = function () {
+
+            var btn = document.getElementById("btn");
+            btn.onclick = function () {
+                alert("你点我干嘛！");
+            }
+
+        }
+    </script>
+
+</head>
+<body>
+    <button id = "btn">我是一个按钮</button>
+    <script type="text/javascript">
+        var btn = document.getElementById("btn");
+        /*
+          给对象添加属性，btn的onclick属性。
+         */
+        // btn.onclick = function () {
+        //     alert("你点我干嘛！");
+        // }
+
+    </script>
+
+
+</body>
+</html>
