@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文档节点遍历</title>
+
+
+
+</head>
+<body>
+    <ol id = "books">
+        <li id = "java">Java</li>
+        <li id = "ssh">轻量级java EE实战</li>
+        <li id = "ajax">疯狂Ajax讲义</li>
+        <li id = "xml">疯狂XML讲义</li>
+        <li id = "ejb">经典Java EE企业级应用实战</li>
+        <li id = "android">疯狂Android讲义</li>
+    </ol>
+    <input type="button" value="父节点" onclick="change(curTarget.parentNode);">
+    <input type="button" value="第一个" onclick="change(curTarget.parentNode.firstChild.nextSibling);"><!--之所以要 两个时因为 li之外的 空格也是一个子节点-->
+    <input type="button" value="上一个" onclick="change(curTarget.previousSibling.previousSibling);">
+    <input type="button" value="下一个" onclick="change(curTarget.nextSibling.nextSibling);">
+    <input type="button" value="最后一个" onclick="change(curTarget.parentNode.lastChild.previousSibling);">
+    <input type="button" value="所有节点" onclick="showNodes();">
+
+
+    <script type="text/javascript">
+
+        var curTarget = document.getElementById("ajax");
+        var change = function (target) {
+            console.log(target.innerHTML);
+        }
+
+        /**
+         * ol 节点 有 6 + 7 个子节点
+         */
+        var showNodes = function () {
+            var oll = document.getElementById("books").childNodes;
+            console.log(oll.length);
+            for (var i = 0 ; i < oll.length ; i++){
+                console.log(oll[i].innerHTML);
+            }
+        }
+    </script>
+
+</body>
+</html>

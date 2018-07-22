@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        /**
+         * 切记 dell和add方法必须定义在 window.onload 外面，否则就是成员变量，不能直接访问。
+         */
+        //removeChild(target) ：父节点 移出 子节点。
+
+
+        var dell;
+        var add;
+        window.onload = function () {
+            var body = document.body;
+            var target = document.getElementById("target");
+            add = function() {
+                body.appendChild(target);
+                document.getElementById("add").disabled = "disabled";
+                document.getElementById("del").disabled = "";
+            }
+
+            dell = function () {
+                body.removeChild(target);
+                document.getElementById("del").disabled = "disabled";
+                document.getElementById("add").disabled = "";
+            }
+
+        }
+
+    </script>
+
+
+</head>
+<body>
+    <input id="add" type="button" value="增加" disabled onclick="add();">
+    <input id="del" type="button" value="删除" onclick="dell();">
+
+    <div id="target" style="width: 240px;height: 50px;border: 1px solid black">被控制的目标元素</div>
+
+
+
+</body>
+</html>

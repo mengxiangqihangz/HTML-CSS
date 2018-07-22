@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取元素</title>
+
+    <style>
+        .box {
+            width: 100px;
+            height: 50px;
+            background-color: #00ee12;
+            margin: 10px;
+        }
+
+
+    </style>
+
+    <!--后续可以做一个 以html元素来划分的总结
+        比如 普通情况的 元素获取，修改，增加，删除
+            表单元素的
+            下拉框的
+            表格的
+    -->
+
+    <script type="text/javascript">
+        window.onload = function () {
+            /*
+             * 通过id 获取元素
+             */
+            var p1 = document.getElementById("sometext");
+            var p2 = document.getElementById("moretext");
+            var p3 = document.getElementById("linkp");
+            console.log(p1);
+            console.log(p2);
+            console.log(p3);
+            console.log(p3.innerText);//得到当前尖括号中 没有在其它括号里面的 内容
+            console.log(p3.innerHTML);//得到的是当前节点中 尖括号里面的所有内容。
+
+            /*
+             * 通过name属性，获取元素
+             * @type {NodeListOf<HTMLElement>}
+             */
+            var vehicle = document.getElementsByName("vehicle");
+            var checkedBox = new Array();
+            for (var i = 0 ; i < vehicle.length ; i++){
+                console.log(vehicle[i]);
+                if(vehicle[i].checked){
+                    checkedBox.push(vehicle[i].value);
+                }
+
+            }
+            console.log(checkedBox.toString());
+
+            /**
+             * 通过class 获取元素
+             */
+            var cla = document.getElementsByClassName("box");
+            for (var i = 0 ; i < cla.length; i++){
+                console.log(cla[i].innerHTML);
+            }
+
+
+            // 下拉框的 被选择元素获取
+            var selectOption = document.getElementById("city");
+            selectOption.onchange = function () {
+                console.log(selectOption.value);
+            }
+        }
+
+
+        /**
+         * 通过 标签 获取元素。
+         */
+        function changecolors() {
+            var a1 = document.getElementsByTagName("td");
+            var a1Length = a1.length;
+            for (var i=0; i < a1Length; i++) {
+                a1[i].style.background = "#aaabba";
+            }
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+    <p id="sometext">Here's some text.</p>
+    <p id="moretext">Here's more text.</p>
+    <p id="linkp">Link to the <a id="w3link" href="http://www.w3.org">W3</a> </p>
+
+
+    <table id="mytable" border="1">
+       <tr>
+           <td id="lefttd0">lefft column</td>
+           <td id="rithttd0">right column</td>
+       </tr>
+        <tr>
+            <td id="lefttd1">lefft column</td>
+            <td id="rithttd1">right column</td>
+        </tr>
+        <tr>
+            <td id="lefttd2">lefft column</td>
+            <td id="rithttd3">right column</td>
+        </tr>
+    </table>
+    <a href="#" onclick="return changecolors();">Click to change colors</a>
+
+    <br/><br/>
+    <form>
+        <p><input type="checkbox" name="vehicle" value="Bike"  checked="checked"/> I have a bike</p>
+        <p><input type="checkbox" name="vehicle" value="Car"/> I have a car</p>
+        <p><input type="checkbox" name="vehicle" value="ship"/> I have a ship</p>
+        <input type="submit" value="Submit" />
+    </form>
+
+    <br><br>
+    <div class="form">
+        <select id="city" class="select">
+            <option value="贵阳">贵阳</option>
+            <option value="六盘水">六盘水</option>
+            <option value="都匀">都匀</option>
+            <option value="福泉">福泉</option>
+            <option value="遵义">遵义</option>
+            <option value="兴义">兴义</option>
+            <option value="安顺">安顺</option>
+            <option value="凯里">凯里</option>
+            <option value="毕节">毕节</option>
+        </select>
+    </div>
+
+    <div>
+        <div class="box">第一个</div>
+        <div class="box">第二个</div>
+        <div class="box">第三个</div>
+    </div>
+
+</body>
+</html>

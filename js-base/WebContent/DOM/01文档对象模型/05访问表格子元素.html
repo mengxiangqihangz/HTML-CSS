@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>访问表格子元素</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            /**
+             * 根据table 元素，获取表格中的 内容
+             * rows ： 表格中的所有 表格行，包括 <thead><tbody><tfoot>中的
+             * rows[index] : 得到表格中的 index + 1 行元素。
+             * cells[index] : 得到表格中的 index + 1 列元素
+             * cells 得到表格内所有的单元格。
+             * rowIndex ：单元格获取不到，只能行元素获取，获取行元素的 行索引值
+             * cellIndex ：获取当前单元格的 在表 格行内 的索引值
+             * @type {HTMLCollectionOf<HTMLTableRowElement> | number | SQLResultSetRowList | string}
+             */
+
+            var rows = document.getElementById("d").rows;
+
+            for (var i = 0 ; i < rows.length ; i++){
+                console.log(rows[i]);
+
+            }
+
+            console.log(document.getElementById('d').rows[1].cells[1].rowIndex);//获取不到
+            console.log(document.getElementById('d').rows[1].rowIndex);//获取不到
+            console.log(document.getElementById('ajax').rowIndex);
+            console.log(document.getElementById('d').rows[1].cells[1].cellIndex);
+
+        }
+
+    </script>
+
+
+
+</head>
+<body>
+    <table id="d" border = "1">
+        <caption>疯狂Java体系</caption>
+ <!--   <thead>
+            <tr>
+                <td>name</td>
+                <td>value</td>
+            </tr>
+        </thead>-->
+        <tbody>
+            <tr>
+                <td>疯狂Java讲义</td>
+                <td>轻量级Java EE企业实战</td>
+            </tr>
+            <tr>
+                <td id="ajax">疯狂Ajax讲义</td>
+                <td>轻量级Java EE企业实战</td>
+            </tr>
+            <tr>
+                <td>疯狂Android讲义</td>
+                <td>轻量级XML企业实战</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <input type="button" value="表格标题" onclick="console.log(document.getElementById('d').caption.innerHTML);"/>
+    <input type="button" value="第一行、第一格" onclick="console.log(document.getElementById('d').rows[0].cells[0].innerHTML);"/>
+    <input type="button" value="第二行、第二格" onclick="console.log(document.getElementById('d').rows[1].cells[1].innerHTML);"/>
+    <input type="button" value="第三行、第二格" onclick="console.log(document.getElementById('d').rows[2].cells[1].innerHTML);"/>
+
+
+
+</body>
+</html>

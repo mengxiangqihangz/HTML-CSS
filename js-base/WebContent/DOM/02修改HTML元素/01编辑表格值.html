@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript">
+        /** 修改table中的值
+         * item(index) 与 rows[index]
+         * 修改HTML 元素
+         * innerHTML ： 该元素尖括号中的内容
+         * value ： value 属性的值，像<input><textarea> 中输入的值
+         *
+         *
+         * @returns {boolean}
+         */
+
+
+        var change = function () {
+            var tb = document.getElementById("d");
+            var row = document.getElementById("row").value;
+            row = parseInt(row);
+            if (isNaN(row)){
+                alert("您要修改的行必须是整数");
+                return false
+            }
+
+            var cel = document.getElementById("cel").value;
+            cel = parseInt(cel);
+            if (isNaN(cel)){
+                alert("您需要修改的列必须是整数");
+                return false;
+            }
+
+            if (row > tb.rows.length || cel > tb.rows.item(0).cells.length){
+                alert("要修改的单元格不在该表格内");
+                return false;
+            }
+
+            tb.rows.item(row-1).cells.item(cel-1).innerHTML = document.getElementById("celVal").value;
+            console.log(tb.rows[0] == tb.rows.item(0));
+        }
+
+        /**
+         * 修改下拉框中的值
+         * options[index] 为下拉框的某个选项赋值。
+         */
+        window.onload = function () {
+            var idea = document.getElementById("idea");
+            idea.onclick = function () {
+                document.getElementById("mySelect").options[1] = new Option("idea");
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+改变第<input id="row" type="text" size="2"/>行,
+第<input id="cel" type="text" size="2"/>列的值为：
+<input id="celVal" type="text" size="16"/><br>
+<input id="chg" type="button" value="改变" onclick="change();"/>
+
+<table id="d" border="1">
+    <tr>
+        <td>疯狂Java讲义</td>
+        <td>轻量级Java EE企业实战</td>
+    </tr>
+    <tr>
+        <td id="ajax">疯狂Ajax讲义</td>
+        <td>轻量级Java EE企业实战</td>
+    </tr>
+    <tr>
+        <td>疯狂Android讲义</td>
+        <td>轻量级XML企业实战</td>
+    </tr>
+
+</table>
+
+
+<br>
+改变下拉框的值为idea<input id="idea" type="button" value="改为idea"><br>
+<select id="mySelect" name="mySelect" size="6"> <!-- 此处的size表示显示几个选项，默认一个，就是单列-->
+    <option value="java" selected="selected">Java</option>
+    <option value="ssh">轻量级java EE实战</option>
+    <option value="ajax">疯狂Ajax讲义</option>
+    <option value="xml">疯狂XML讲义</option>
+    <option value="ejb">经典Java EE企业级应用实战</option>
+    <option value="android">疯狂Android讲义</option>
+</select><br>
+
+
+</body>
+</html>

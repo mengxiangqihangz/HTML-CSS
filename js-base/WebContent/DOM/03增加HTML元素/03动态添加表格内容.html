@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        // insertRow(index) : 在index 处插入一行，返回新的创建的 HTMLTalbeRowElement
+        // createCaption()  ：为表格创建标题 HTMLTalbeCaptionElement。
+        // createTFoot() : 为表格创建tfoot 元素 返回 HTMLTalbeFootElement
+        // createTHead() : 为该表格创建 thead 元素
+        // insertCell(index) : 在index处创建一个单元格，返回创建的单元格
+
+        //body 也是在文档加载之后才有。
+        window.onload = function () {
+            var a = document.createElement("table");
+            a.border = 1;
+            var caption = a.createCaption();
+            caption.innerHTML = "表格标题";
+
+            for (var i = 0 ; i < 5; i++){
+                var tr = a.insertRow(i);
+                for (var j = 0 ; j < 7 ; j++){
+                    var td = tr.insertCell(j);
+                    td.innerHTML = "单元格内容" + i + j;
+                }
+            }
+            document.body.appendChild(a);
+        }
+
+
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

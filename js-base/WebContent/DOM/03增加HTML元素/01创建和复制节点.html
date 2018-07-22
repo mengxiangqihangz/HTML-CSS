@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建和复制节点</title>
+    <script type="text/javascript">
+        /**
+         * 创建和复制节点
+         */
+        // document.createElement(Tag) :创建Tag标签对应的节点
+        // cloneNode(boolean deep) : 复制当前节点 deep为true时，复制当前节点中的所有后代代码，false只复制当前节点
+
+        /**
+         * 添加节点
+         */
+        // appendChild(Node) : 将node添加成当前节点的最后一个字节点
+        // insertBefore(node newNode,Node refNode) : 在refNode节点之前插入 newNode
+        // replaceChild(Node newNode,Node oldNode) : 将oldNode 替换为newNode
+        window.onload = function () {
+            var div = document.createElement("div");
+            console.log(div);
+
+            var ul = document.getElementById("d");
+            var ult = document.getElementById("d").cloneNode(true);
+            var ulf = document.getElementById("d").cloneNode(false);
+            console.log(ult);
+            console.log(ulf);
+
+            document.body.appendChild(ult);
+            document.body.insertBefore(ulf,ul);
+
+        }
+
+    </script>
+
+
+
+</head>
+<body>
+    <ul id="d">
+        <li>疯狂Java讲义</li>
+    </ul>
+
+</body>
+</html>

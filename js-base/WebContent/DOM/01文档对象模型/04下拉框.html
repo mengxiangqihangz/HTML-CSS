@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉框</title>
+    <script type="text/javascript">
+        var curTarget;
+        window.onload = function () {
+
+            /* 列表框，下拉框
+             * form ： 返回列表框、下拉菜单 所在 的表单对象。
+             * length : 返回列表框、下拉菜单 的选项个数。
+             * options ： 返回列表框、下拉菜单 所有选项组的数组，
+             * selectedIndex : 返回下拉列表中选中选项的索引，如果选中多个，则返回第一个。
+             * selected ： 返回该选项是否被选中。
+             * text ：返回该选项呈现的文本。
+             * value ： 返回选项中的value 属性值。
+             */
+            curTarget = document.getElementById("mySelect");
+            console.log(curTarget.form);
+            console.log(curTarget.options[0]);
+            /**
+             * 获取select 下拉框，之后获取下拉框中的内容
+             */
+        }
+        var change = function (target) {
+            console.log(target)
+        }
+    </script>
+
+</head>
+<body>
+
+<form id="X">
+    <select id="mySelect" name="mySelect" size="5"> <!-- 此处的size表示显示几个选项，默认一个，就是单列-->
+        <option value="java" selected="selected">Java</option>
+        <option value="ssh">轻量级java EE实战</option>
+        <option value="ajax">疯狂Ajax讲义</option>
+        <option value="xml">疯狂XML讲义</option>
+        <option value="ejb">经典Java EE企业级应用实战</option>
+        <option value="android">疯狂Android讲义</option>
+    </select><br>
+
+    <input type="button" value="第一个" onclick="change(curTarget.options[0]);">
+    <input type="button" value="上一个" onclick="change(curTarget.options[curTarget.selectedIndex - 1]);">
+    <input type="button" value="下一个" onclick="change(curTarget.options[curTarget.selectedIndex + 1]);">
+    <input type="button" value="最后一个" onclick="change(curTarget.options[curTarget.length - 1]);">
+    <input type="button" value="选中" onclick="change(curTarget.options[curTarget.selectedIndex]);">
+</form>
+
+</body>
+</html>

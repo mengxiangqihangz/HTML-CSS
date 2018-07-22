@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            // add(HTMLOptionElement option,HTMLOptionElement before) : 在before选项之前添加option，如果想添加在最后 before 为null或这appendChild(option)
+            /*
+             * new Option(text,value,defaultSelected,selected)
+             * text : 选项中的文本
+             * value ： 选项中的值
+             * defaultSelected ： 设置默认是否选中
+             * selected ： 设置该选项当前是否被选中。
+             * 只有一个值 则为text ，两个value ，依此类推
+             */
+            var sele = document.createElement("select");
+            for (var i = 0; i< 10; i++){
+                var op = document.createElement("option");
+                op.innerHTML = "新增的选项" + i;
+                sele.add(op);
+            }
+
+            sele.size = 5;
+            document.body.appendChild(sele);
+
+        }
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

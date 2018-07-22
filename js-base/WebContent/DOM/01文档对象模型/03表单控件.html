@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单控件</title>
+    <script type="text/javascript">
+       /* 获取到form表单控件之后，其含有action、
+       method、
+       length、
+       target,可以直接获取到相应的值
+       
+       elements属性返回表单内部全部表单控件
+            之后可以通过 formObj.elements[index]
+                        formObj.elements['elementName']
+                        formObj.elementName   访问具体的表单
+
+        -----------获取表单form后，然后获取表单中的东西。
+       */
+
+
+    </script>
+
+</head>
+<body>
+<form id="d" action="http://www.baidu.com" method="get" target="_blank">
+
+    用户：<input name = "user" type="text" value="用户名/邮箱"><br>
+    密码：<input name = "pwd" type="password"><br>
+    <select name="color">
+        <option value="red">红色</option>
+        <option value="blue">蓝色</option>
+    </select><br/>
+    <input type="button" value="action" onclick="console.log(document.getElementById('d').action)"><!--获取到form表单控件之后，其含有action、method、length、target 属性-->
+    <input type="button" value="method" onclick="console.log(document.getElementById('d').method)">
+    <input type="button" value="length" onclick="console.log(document.getElementById('d').length)">
+    <input type="button" value="target" onclick="console.log(document.getElementById('d').target)">
+    <input type="button" value="第一个" onclick="console.log(document.getElementById('d').elements[0].value)"><!-- elements属性返回表单内部全部表单控件  -->
+    <input type="button" value="第二个" onclick="console.log(document.getElementById('d').elements['pwd'].value)"><!-- 可以通过下标，name值访问某个表单控件-->
+    <input type="button" value="第三个" onclick="console.log(document.getElementById('d').color.value)">
+    
+    <br><br><br><br>
+</form>
+
+</body>
+</html>

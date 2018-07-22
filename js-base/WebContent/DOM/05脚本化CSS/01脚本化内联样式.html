@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        /*
+        * 脚本化css最直接的方法就是 更改单独文档元素的style属性。
+        * style的属性，它的值不是字符串，而是CSSStyleDeclaration
+        * 名字约定
+        *   如font-size ：由于-在css中是减号，所以 改 为fontSize
+        *
+        */
+        window.onload = function () {
+
+            var e = document.body;
+            e.style.position = "";
+            e.style.fontFamily = "";
+            e.style.backgroundColor = "";
+            e.style.left = "";
+            e.style.margin = "";
+            //获取元素的样式正好相反
+            var backgroundColor = e.style.backgroundColor;
+
+        }
+
+    </script>
+
+
+</head>
+<body>
+
+</body>
+</html>
