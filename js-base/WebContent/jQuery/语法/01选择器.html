@@ -1,0 +1,78 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery选择器</title>
+
+    <style type="text/css">
+        div,span,p {
+            width: 140px;
+            height:140px;
+            margin: 5px;
+            background: #aaa;
+            border: #000 1px solid;
+            float: left;
+            font-size: 17px;
+            font-family: Verdana;
+        }
+        div.mini{
+            width: 55px;
+            height: 55px;
+            background-color: #aaa;
+            font-size: 12px;
+        }
+        div.hide{
+            display: none;
+        }
+
+    </style>
+
+    <script type="text/javascript" src="../jquery-1.12.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("p").click(function(){
+                $(this).hide();
+            });
+        });
+    </script>
+</head>
+
+<body>
+<p>If you click on me, I will disappear.</p>
+
+<div class="one" id="one">
+    id is one,class is one ,
+    <div class="mini">class is mini</div>
+
+</div>
+<div class="one" id="two" title="test">
+    id is two,class is one ,title is test
+    <div class="mini" title="other">class is mini,title is other</div>
+    <div class="mini" title="test">class is mini,title is test</div>
+
+</div>
+
+<div class="one">
+    <div class="mini">class is mini</div>
+    <div class="mini">class is mini</div>
+    <div class="mini">class is mini</div>
+    <div class="mini">class is</div>
+</div>
+
+<div class="one">
+    <div class="mini">class is mini</div>
+    <div class="mini">class is mini</div>
+    <div class="mini">class is mini</div>
+    <div class="mini" title="tesst">class is mini,title is tesst</div>
+</div>
+<div style="display: none;" class="none">
+    style's display is none
+</div>
+<div class="hide">class is hide</div>
+<div>包含input的type为hidden的div<input type="hidden" size="8"></div>
+<span id=""mover>正在执行动画的span元素</span>
+
+
+
+</body>
+
+</html>
